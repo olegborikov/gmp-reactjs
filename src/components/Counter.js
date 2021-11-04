@@ -1,5 +1,6 @@
 import {Component} from "react";
 import {Button, Col, Row} from "antd";
+import React from 'react';
 
 class Counter extends Component {
   state = {

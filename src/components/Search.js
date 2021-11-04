@@ -1,5 +1,6 @@
 import {Col, Input} from 'antd';
 import {useCallback} from "react";
+import React from 'react';
 
 function Search({onNameSearch}) {
 
