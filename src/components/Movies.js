@@ -1,6 +1,7 @@
 import MovieCard from "./MovieCard";
 import {Col, Row} from 'antd';
 import {GENRES, MOVIES} from "../constants/Constant";
+import React from 'react';
 
 function Movies({name, genre}) {
   const movies = MOVIES.filter(movie => genre === 'ALL' ? true : movie.genres.indexOf(GENRES[genre]) > -1)

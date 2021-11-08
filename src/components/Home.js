@@ -3,6 +3,7 @@ import Movies from "./Movies";
 import {Row, Space} from "antd";
 import {useState} from "react";
 import GenresTab from "./GenresTab";
+import React from 'react';
 
 function Home() {
   const [genre, setGenre] = useState('ALL')

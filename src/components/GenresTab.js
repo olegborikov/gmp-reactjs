@@ -1,6 +1,7 @@
 import {GENRES} from "../constants/Constant";
 import {Col, Tabs} from "antd";
 import {useCallback} from "react";
+import React from 'react';
 
 const {TabPane} = Tabs;
 

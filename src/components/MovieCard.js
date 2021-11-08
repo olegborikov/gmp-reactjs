@@ -1,6 +1,7 @@
 import {Card, Col} from "antd";
 import Counter from "./Counter";
 import {PureComponent} from "react";
+import React from 'react';
 
 class MovieCard extends PureComponent {
 
