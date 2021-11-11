@@ -1,3 +1,8 @@
+export const SORT_TYPES = [
+  'TITLE',
+  'RELEASE DATE'
+]
+
 export const GENRES = [
   'Action',
   'Documentary',
