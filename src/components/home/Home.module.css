@@ -1,0 +1,9 @@
+.home {
+  grid-area: home;
+  background-color: #232323;
+  padding: 20px 20px 20px 20px;
+}
+
+.dropdown {
+  text-align: right;
+}

@@ -1,34 +1,24 @@
 import React from "react";
-import classes from "./styles.module.css";
-import GenresTab from "../filter/GenresTab";
-import {Col, Row} from "antd";
+import classes from "./Home.module.css";
+import GenresList from "../filter/GenresList";
 import ParametersDropdown from "../sort/ParametersDropdown";
 import Movies from "../movies/Movies";
 import MoviesLabel from "../movies/label/MoviesLabel";
+import {MOVIES} from "../../constants/Constant";
 
 function Home() {
   return (
     <div className={classes.home}>
-      <Row>
-        <Col offset={1}>
-          <GenresTab/>
-        </Col>
-        <Col offset={11}>
+      <div>
+        <GenresList/>
+        <div className={classes.dropdown}>
           <ParametersDropdown/>
-        </Col>
-      </Row>
+        </div>
+      </div>
       <br/>
-      <Row>
-        <Col offset={1}>
-          <MoviesLabel/>
-        </Col>
-      </Row>
+        <MoviesLabel moviesAmount={MOVIES.length}/>
       <br/>
-      <Row>
-        <Col span={21} offset={1}>
-          <Movies/>
-        </Col>
-      </Row>
+        <Movies/>
     </div>
   );
 }

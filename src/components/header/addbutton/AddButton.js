@@ -1,11 +1,9 @@
 import React from 'react';
-import {Button} from "antd";
+import classes from "./AddButton.module.css";
 
 function AddButton() {
   return (
-    <>
-      <Button ghost={true} size="large">+ ADD MOVIE</Button>
-    </>
+    <button className={classes.button}>+ ADD MOVIE</button>
   );
 }
 

@@ -1,11 +1,10 @@
 import React from 'react';
-import {MOVIES} from "../../../constants/Constant";
-import classes from "./styles.module.css";
+import classes from "./MoviesLabel.module.css";
 
-function MoviesLabel() {
+function MoviesLabel(props) {
   return (
     <div className={classes.label}>
-      <strong>{MOVIES.length}</strong> movies found
+      <strong>{props.moviesAmount}</strong> movies found
     </div>
   )
 }

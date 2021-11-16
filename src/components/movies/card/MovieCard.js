@@ -1,17 +1,14 @@
-import {Card, Col} from "antd";
 import React from "react";
 import PropTypes from "prop-types";
-import classes from "./styles.module.css";
+import classes from "./MovieCard.module.css";
 
 function MovieCard({title, genres, releaseYear}) {
   return (
-    <Col flex="435px">
-      <Card bordered={false} className={classes.card}>
-        <p>{title}</p>
-        <p>{genres.join(' ')}</p>
-        <p>{releaseYear}</p>
-      </Card>
-    </Col>
+    <div className={classes.card}>
+      <p>{title}</p>
+      <p>{genres.join(' ')}</p>
+      <p>{releaseYear}</p>
+    </div>
   )
 }
 

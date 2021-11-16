@@ -1,11 +1,9 @@
 import React from 'react';
-import classes from "./styles.module.css";
+import classes from "./SearchLabel.module.css";
 
 function SearchLabel() {
   return (
-    <div className={classes.label}>
-      FIND YOUR MOVIE
-    </div>
+    <label className={classes.label}>FIND YOUR MOVIE</label>
   );
 }
 

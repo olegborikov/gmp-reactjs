@@ -1,12 +1,10 @@
-import {Input} from 'antd';
 import React from 'react';
+import classes from "./SearchInput.module.css";
 
-function Search() {
+function SearchInput() {
   return (
-    <>
-      <Input size="large" style={{width: 600}}/>
-    </>
+    <input className={classes.input}/>
   );
 }
 
-export default Search;
+export default SearchInput;

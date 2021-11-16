@@ -3,11 +3,10 @@
   color: white;
   display: grid;
   grid-template-areas:
-  "header sidebar"
-  "home sidebar"
-  "footer sidebar";
-  grid-template-rows: 300px 1fr 50px;
-  grid-template-columns: 10fr 2fr;
+  "header"
+  "home"
+  "footer";
+  grid-template-rows: 350px 1fr 50px;
   margin: 3%;
   padding-bottom: 2%;
 }
