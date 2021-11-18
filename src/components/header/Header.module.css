@@ -1,0 +1,13 @@
+.header {
+  grid-area: header;
+  margin-bottom: 15px;
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1)),  url("/public/header-img.jpeg");
+}
+
+.search {
+  text-align: center;
+}
+
+.button {
+  text-align: right;
+}

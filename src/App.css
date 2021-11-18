@@ -1,3 +1,16 @@
-.App {
-  margin-top: 20px;
+.app {
+  background: #424242;
+  color: white;
+  display: grid;
+  grid-template-areas:
+  "header"
+  "home"
+  "footer";
+  grid-template-rows: 350px 1fr 50px;
+  margin: 3%;
+  padding-bottom: 2%;
+}
+
+body {
+  background-color: #424242;
 }
