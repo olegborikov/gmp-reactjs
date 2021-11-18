@@ -6,7 +6,7 @@ import classes from "./ParametersDropdown.module.css";
 function ParametersDropdown() {
   return (
     <div className={classes.dropdown}>
-      <SortLabel/> &ensp;
+      <SortLabel/>
       <select className={classes.select}>
         {
           SORT_TYPES.map(value => <option key={SORT_TYPES.indexOf(value)}>{value}</option>)

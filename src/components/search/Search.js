@@ -5,7 +5,7 @@ import SearchInput from "./input/SearchInput";
 function Search() {
   return (
     <>
-      <SearchInput/> &ensp;
+      <SearchInput/>
       <SearchButton/>
     </>
   );
