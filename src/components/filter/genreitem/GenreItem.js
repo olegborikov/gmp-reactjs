@@ -4,7 +4,7 @@ import classes from "./GenreItem.module.css";
 
 function GenreItem(props) {
   return (
-    <button className={classes.item}>
+    <button className={classes.item} onClick={(e) => props.filterByGenre(e.target?.value)} value={props.name}>
       {props.name}
     </button>
   )

@@ -8,11 +8,9 @@ import SearchLabel from "../search/label/SearchLabel";
 function Header() {
   return (
     <div className={classes.header}>
-      <div>
+      <div className={classes.top}>
         <Logo/>
-        <div className={classes.button}>
-          <AddButton/>
-        </div>
+        <AddButton/>
       </div>
       <br/>
       <br/>

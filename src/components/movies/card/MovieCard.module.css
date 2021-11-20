@@ -1,6 +1,31 @@
 .card {
-  width: 360px;
-  height: 200px;
+  width: 275px;
+  height: 350px;
   color: white;
   background-color: #232323;
+}
+
+.text {
+  display: grid;
+  grid-template-areas:
+  "title year";
+  grid-template-columns: 4fr 1fr;
+}
+
+.genres {
+  color: #555555;
+}
+
+.title {
+  grid-area: title;
+}
+
+.year {
+  grid-area: year;
+}
+
+.actions {
+  grid-area: actions;
+  padding-right: 15px;
+  padding-left: 200px;
 }

@@ -1,0 +1,10 @@
+.close {
+  text-align: right;
+}
+
+.button {
+  background-color: white;
+  color: #232323;
+  margin-right: 10px;
+  margin-top: 5px;
+}

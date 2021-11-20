@@ -1,0 +1,18 @@
+.popup {
+  position: fixed;
+  top: 250px;
+  left: 600px;
+  height: 470px;
+  width: 500px;
+  overflow: hidden;
+  background-color: #232323;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #000;
+}
+
+.inputs {
+  display: grid;
+  grid-template-areas:
+  "addinput addinput";
+  grid-template-columns: 310px 170px;
+}

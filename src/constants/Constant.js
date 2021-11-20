@@ -1,6 +1,6 @@
 export const SORT_TYPES = [
-  'TITLE',
-  'RELEASE DATE'
+  'YEAR',
+  'TITLE'
 ]
 
 export const GENRES = [
