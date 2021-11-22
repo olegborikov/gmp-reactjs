@@ -1,8 +1,9 @@
-import React from 'react';
+import React from "react";
 import classes from "./DeleteMovie.module.css";
 import DeleteText from "./text/DeleteText";
 import CloseButton from "../button/close/CloseButton";
 import ConfirmButton from "../button/confirm/ConfirmButton";
+import PropTypes from "prop-types";
 
 function DeleteMovie(props) {
   return (
@@ -13,5 +14,9 @@ function DeleteMovie(props) {
     </div>
   )
 }
+
+DeleteMovie.propTypes = {
+  toggleDeleteMovieWindow: PropTypes.func.isRequired
+};
 
 export default DeleteMovie;

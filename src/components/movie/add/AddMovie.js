@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
 import classes from "./AddMovie.module.css";
 import CloseButton from "../button/close/CloseButton";
 import AddText from "./text/AddText";
-import AddInput from "./input/AddInput";
+import Input from "../../common/input/Input";
 import ConfirmButton from "../button/confirm/ConfirmButton";
 import ResetButton from "../button/reset/ResetButton";
 import DescriptionArea from "./area/DescriptionArea";
+import PropTypes from "prop-types";
 
 function AddMovie(props) {
   return (
@@ -13,12 +14,12 @@ function AddMovie(props) {
       <CloseButton action={props.toggleAddMovieWindow}/>
       <AddText/>
       <div className={classes.inputs}>
-        <AddInput param='TITLE' value={props.title}/>
-        <AddInput param='RELEASE DATE' value={props.releaseYear}/>
-        <AddInput param='MOVIE URL'/>
-        <AddInput param='RATING'/>
-        <AddInput param='GENRE' value={props.genres}/>
-        <AddInput param='RUNTIME'/>
+        <Input param="TITLE" value={props.title}/>
+        <Input param="RELEASE DATE" value={props.releaseYear}/>
+        <Input param="MOVIE URL"/>
+        <Input param="RATING"/>
+        <Input param="GENRE" value={props.genres}/>
+        <Input param="RUNTIME"/>
       </div>
       <DescriptionArea/>
       <ResetButton action={props.toggleAddMovieWindow}/>
@@ -26,5 +27,12 @@ function AddMovie(props) {
     </div>
   )
 }
+
+AddMovie.propTypes = {
+  toggleAddMovieWindow: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  releaseYear: PropTypes.string,
+  genres: PropTypes.string
+};
 
 export default AddMovie;

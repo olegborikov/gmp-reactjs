@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import classes from "./ResetButton.module.css";
+import PropTypes from "prop-types";
 
 function ResetButton(props) {
   return (
@@ -8,5 +9,9 @@ function ResetButton(props) {
     </div>
   )
 }
+
+ResetButton.propTypes = {
+  action: PropTypes.func.isRequired
+};
 
 export default ResetButton;

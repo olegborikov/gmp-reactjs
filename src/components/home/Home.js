@@ -8,23 +8,8 @@ import {MOVIES, SORT_TYPES} from "../../constants/Constant";
 
 class Home extends Component {
   state = {
-    movies: MOVIES
-  }
-
-  render() {
-    const {movies} = this.state
-    return (
-      <div className={classes.home}>
-        <div className={classes.top}>
-          <GenresList filterByGenre={this.filterByGenre}/>
-          <ParametersDropdown sortByParameter={this.sortByParameter}/>
-        </div>
-        <br/>
-        <MoviesLabel moviesAmount={movies.length}/>
-        <br/>
-        <Movies movies={movies}/>
-      </div>
-    );
+    movies: MOVIES,
+    currentGenre: "All"
   }
 
   sortByParameter = this.internalSortByParameter.bind(this);
@@ -43,10 +28,27 @@ class Home extends Component {
   }
 
   internalFilterByGenre(genre) {
-    let movies = MOVIES.filter(movie => genre === 'All' ? true : movie.genres.indexOf(genre) > -1)
+    let movies = MOVIES.filter(movie => genre === "All" ? true : movie.genres.indexOf(genre) > -1)
     this.setState({
-      movies: movies
+      movies: movies,
+      currentGenre: genre
     });
+  }
+
+  render() {
+    const {movies} = this.state
+    return (
+      <div className={classes.home}>
+        <div className={classes.top}>
+          <GenresList filterByGenre={this.filterByGenre} currentGenre={this.state.currentGenre}/>
+          <ParametersDropdown sortByParameter={this.sortByParameter}/>
+        </div>
+        <br/>
+        <MoviesLabel moviesAmount={movies.length}/>
+        <br/>
+        <Movies movies={movies}/>
+      </div>
+    );
   }
 }
 

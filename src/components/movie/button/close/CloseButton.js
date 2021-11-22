@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import classes from "./CloseButton.module.css";
+import PropTypes from "prop-types";
 
 function CloseButton(props) {
   return (
@@ -8,5 +9,9 @@ function CloseButton(props) {
     </div>
   )
 }
+
+CloseButton.propTypes = {
+  action: PropTypes.func.isRequired
+};
 
 export default CloseButton;

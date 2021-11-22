@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import classes from "./ActionsButton.module.css";
 import DeleteMovie from "../../../movie/delete/DeleteMovie";
 import EditMovie from "../../../movie/edit/EditMovie";
+import PropTypes from "prop-types";
 
 class ActionsButton extends Component {
   state = {
@@ -37,5 +38,13 @@ class ActionsButton extends Component {
     )
   }
 }
+
+ActionsButton.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genres: PropTypes.array.isRequired,
+    releaseYear: PropTypes.string.isRequired
+  })
+};
 
 export default ActionsButton;

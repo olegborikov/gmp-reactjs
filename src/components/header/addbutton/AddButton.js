@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 import classes from "./AddButton.module.css";
 import AddMovie from "../../movie/add/AddMovie";
 

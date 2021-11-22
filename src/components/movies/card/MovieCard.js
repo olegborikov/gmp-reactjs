@@ -18,7 +18,7 @@ function MovieCard({movie}) {
           {releaseYear}
         </div>
         <div className={classes.genres}>
-          {genres.join(', ')}
+          {genres.join(", ")}
         </div>
       </div>
     </div>
@@ -32,4 +32,5 @@ MovieCard.propTypes = {
     releaseYear: PropTypes.string.isRequired
   })
 }
+
 export default MovieCard;

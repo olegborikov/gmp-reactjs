@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import classes from "./ConfirmButton.module.css";
+import PropTypes from "prop-types";
 
 function ConfirmButton(props) {
   return (
@@ -8,5 +9,10 @@ function ConfirmButton(props) {
     </div>
   )
 }
+
+ConfirmButton.propTypes = {
+  action: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
+};
 
 export default ConfirmButton;

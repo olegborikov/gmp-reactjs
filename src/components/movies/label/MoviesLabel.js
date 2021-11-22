@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import classes from "./MoviesLabel.module.css";
+import PropTypes from "prop-types";
 
 function MoviesLabel(props) {
   return (
@@ -8,5 +9,9 @@ function MoviesLabel(props) {
     </div>
   )
 }
+
+MoviesLabel.propTypes = {
+  moviesAmount: PropTypes.number.isRequired
+};
 
 export default MoviesLabel;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import SearchButton from "./button/SearchButton";
 import SearchInput from "./input/SearchInput";
 

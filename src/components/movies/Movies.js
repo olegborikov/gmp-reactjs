@@ -1,6 +1,7 @@
 import MovieCard from "./card/MovieCard";
-import React from 'react';
+import React from "react";
 import classes from "./Movies.module.css";
+import PropTypes from "prop-types";
 
 function Movies({movies}) {
   return (
@@ -11,5 +12,9 @@ function Movies({movies}) {
     </div>
   )
 }
+
+Movies.propTypes = {
+  movies: PropTypes.array.isRequired
+};
 
 export default Movies;

@@ -1,7 +1,8 @@
-import React from 'react';
+import React from "react";
 import SortLabel from "./label/SortLabel";
 import classes from "./ParametersDropdown.module.css";
 import {SORT_TYPES} from "../../constants/Constant";
+import PropTypes from "prop-types";
 
 function ParametersDropdown(props) {
   return (
@@ -16,5 +17,9 @@ function ParametersDropdown(props) {
     </div>
   );
 }
+
+ParametersDropdown.propTypes = {
+  sortByParameter: PropTypes.func.isRequired
+};
 
 export default ParametersDropdown;

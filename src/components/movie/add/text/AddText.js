@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import classes from "./AddText.module.css";
 
 function AddText() {
