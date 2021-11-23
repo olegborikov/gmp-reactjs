@@ -1,0 +1,23 @@
+.param {
+  color: #f65261;
+}
+
+.dropdown {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.select {
+  background-color: #424242;
+  width: 95%;
+}
+
+.li {
+  list-style-type: none
+}
+
+.list {
+  display: grid;
+  grid-template-areas:
+  "li li";
+}

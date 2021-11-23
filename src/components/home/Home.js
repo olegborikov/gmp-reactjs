@@ -3,14 +3,23 @@ import classes from "./Home.module.css";
 import GenresList from "../filter/genres/GenresList";
 import Movies from "../movies/Movies";
 import MoviesLabel from "../movies/label/MoviesLabel";
-import {MOVIES, SORT_TYPES} from "../../constants/Constant";
+import {SORT_TYPES} from "../../constants/Constant";
 import SortOptions from "../sort/SortOptions";
+import PropTypes from "prop-types";
 
 class Home extends Component {
   state = {
-    movies: MOVIES,
+    movies: this.props.movies,
     currentGenre: "All",
     isAskOrder: true
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.movies !== this.props.movies) {
+      this.setState({
+        movies: this.props.movies
+      })
+    }
   }
 
   sortByParameter = this.internalSortByParameter.bind(this);
@@ -25,9 +34,9 @@ class Home extends Component {
     } else if (parameter === SORT_TYPES[1]) {
       sortedMovies = movies.sort((a, b) => a.releaseDate.localeCompare(b.releaseDate))
     } else if (parameter === SORT_TYPES[2]) {
-      sortedMovies = movies.sort((a, b) => a.rating.localeCompare(b.rating))
+      sortedMovies = movies.sort((a, b) => a.rating - b.rating)
     } else if (parameter === SORT_TYPES[3]) {
-      sortedMovies = movies.sort((a, b) => a.runtime.localeCompare(b.runtime))
+      sortedMovies = movies.sort((a, b) => a.runtime - b.runtime)
     }
     this.setState({
       movies: sortedMovies
@@ -35,7 +44,8 @@ class Home extends Component {
   }
 
   internalFilterByGenre(genre) {
-    let filteredMovies = MOVIES.filter(movie => genre === "All" ? true : movie.genres.indexOf(genre) > -1)
+    let movies = this.props.movies
+    let filteredMovies = movies.filter(movie => genre === "All" ? true : movie.genres.indexOf(genre) > -1)
     this.setState({
       movies: filteredMovies,
       currentGenre: genre,
@@ -64,10 +74,16 @@ class Home extends Component {
         <br/>
         <MoviesLabel moviesAmount={movies.length}/>
         <br/>
-        <Movies movies={movies}/>
+        <Movies movies={movies} deleteMovie={this.props.deleteMovie} editMovie={this.props.editMovie}/>
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  movies: PropTypes.array.isRequired,
+  deleteMovie: PropTypes.func.isRequired,
+  editMovie: PropTypes.func.isRequired
+};
 
 export default Home

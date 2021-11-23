@@ -28,11 +28,15 @@ class ActionsButton extends Component {
         <div>
           <button className={classes.button} onClick={this.toggleEditMovieWindow}>Edit</button>
           {this.state.isEditVisible ?
-            <EditMovie toggleEditMovieWindow={this.toggleEditMovieWindow} movie={this.props.movie}/> : null}
+            <EditMovie toggleEditMovieWindow={this.toggleEditMovieWindow}
+                       movie={this.props.movie}
+                       editMovie={this.props.editMovie}/> : null}
         </div>
         <div>
           <button className={classes.button} onClick={this.toggleDeleteMovieWindow}>Delete</button>
-          {this.state.isDeleteVisible ? <DeleteMovie toggleDeleteMovieWindow={this.toggleDeleteMovieWindow}/> : null}
+          {this.state.isDeleteVisible ? <DeleteMovie toggleDeleteMovieWindow={this.toggleDeleteMovieWindow}
+                                                     id={this.props.movie.id}
+                                                     deleteMovie={this.props.deleteMovie}/> : null}
         </div>
       </>
     )
@@ -40,10 +44,17 @@ class ActionsButton extends Component {
 }
 
 ActionsButton.propTypes = {
+  deleteMovie: PropTypes.func.isRequired,
+  editMovie: PropTypes.func.isRequired,
   movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    genres: PropTypes.array.isRequired,
-    releaseDate: PropTypes.string.isRequired
+    releaseDate: PropTypes.string.isRequired,
+    movieUrl: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    runtime: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.array.isRequired
   })
 };
 

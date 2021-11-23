@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import classes from "./MovieCard.module.css";
 import ActionsButton from "./actions/ActionsButton";
 
-function MovieCard({movie}) {
+function MovieCard({movie, deleteMovie, editMovie}) {
   const {title, genres, releaseDate} = movie
   return (
     <div className={classes.card}>
       <div className={classes.actions}>
-        <ActionsButton movie={movie}/>
+        <ActionsButton movie={movie} deleteMovie={deleteMovie} editMovie={editMovie}/>
       </div>
       <div className={classes.text}>
         <div className={classes.title}>
@@ -26,10 +26,17 @@ function MovieCard({movie}) {
 }
 
 MovieCard.propTypes = {
+  deleteMovie: PropTypes.func.isRequired,
+  editMovie: PropTypes.func.isRequired,
   movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    genres: PropTypes.array.isRequired,
-    releaseDate: PropTypes.string.isRequired
+    releaseDate: PropTypes.string.isRequired,
+    movieUrl: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    runtime: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.array.isRequired
   })
 }
 

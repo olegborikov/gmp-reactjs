@@ -4,13 +4,14 @@ import Search from "../search/Search";
 import Logo from "../logo/Logo";
 import AddAction from "./action/AddAction";
 import SearchLabel from "../search/label/SearchLabel";
+import PropTypes from "prop-types";
 
-function Header() {
+function Header(props) {
   return (
     <div className={classes.header}>
       <div className={classes.top}>
         <Logo/>
-        <AddAction/>
+        <AddAction addMovie={props.addMovie}/>
       </div>
       <br/>
       <br/>
@@ -22,5 +23,9 @@ function Header() {
     </div>
   )
 }
+
+Header.propTypes = {
+  addMovie: PropTypes.func.isRequired
+};
 
 export default Header
