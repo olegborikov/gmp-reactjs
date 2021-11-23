@@ -17,7 +17,7 @@ class App extends Component {
   editMovie = this.internalEditMovie.bind(this);
 
   internalAddMovie(movie) {
-    movie.id = this.state.movies.length
+    movie.id = this.state.movies.length + 1
     this.setState({
       movies: [...this.state.movies, movie]
     });

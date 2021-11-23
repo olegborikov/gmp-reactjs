@@ -16,7 +16,7 @@ class AddMovie extends Component {
     releaseDate: this.props.releaseDate,
     movieUrl: this.props.movieUrl,
     rating: this.props.rating,
-    genres: this.props.genres,
+    genres: this.props.genres ? this.props.genres : [],
     runtime: this.props.runtime,
     overview: this.props.overview
   }
@@ -25,14 +25,14 @@ class AddMovie extends Component {
 
   internalResetValues() {
     this.setState({
-      id: this.props.id ? this.props.id : '',
-      title: this.props.title ? this.props.title : '',
-      releaseDate: this.props.releaseDate ? this.props.releaseDate : '',
-      movieUrl: this.props.movieUrl ? this.props.movieUrl : '',
-      rating: this.props.rating ? this.props.rating : '',
-      genres: this.props.genres ? this.props.genres : '',
-      runtime: this.props.runtime ? this.props.runtime : '',
-      overview: this.props.overview ? this.props.overview : ''
+      id: this.props.id ? this.props.id : "",
+      title: this.props.title ? this.props.title : "",
+      releaseDate: this.props.releaseDate ? this.props.releaseDate : "",
+      movieUrl: this.props.movieUrl ? this.props.movieUrl : "",
+      rating: this.props.rating ? this.props.rating : "",
+      genres: this.props.genres ? this.props.genres : [],
+      runtime: this.props.runtime ? this.props.runtime : "",
+      overview: this.props.overview ? this.props.overview : ""
     })
   }
 
@@ -69,7 +69,7 @@ class AddMovie extends Component {
 
     const onGenreChange = (event) => {
       const {genres} = this.state
-      const updatedGenres = genres.indexOf(event.target?.value) > -1
+      const updatedGenres = genres?.indexOf(event.target?.value) > -1
         ? genres.filter(genre => genre !== event.target?.value)
         : [...this.state.genres, event.target?.value]
       this.setState({

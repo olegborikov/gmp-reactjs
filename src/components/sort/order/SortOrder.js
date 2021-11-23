@@ -5,7 +5,7 @@ import classes from "./SortOrder.module.css";
 function SortOrder(props) {
   return (
     <div className={classes.order} onClick={(e) => props.switchOrder()}>
-      {props.isAskOrder ? '▲' : '▼'}
+      {props.isAskOrder ? "▲" : "▼"}
     </div>
   );
 }
