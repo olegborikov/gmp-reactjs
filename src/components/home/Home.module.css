@@ -8,5 +8,5 @@
   display: grid;
   grid-template-areas:
   "genreslist parametersdropdown";
-  grid-template-columns: 9fr 2fr;
+  grid-template-columns: 5fr 2fr;
 }

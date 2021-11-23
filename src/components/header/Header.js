@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Header.module.css";
 import Search from "../search/Search";
 import Logo from "../logo/Logo";
-import AddButton from "./addbutton/AddButton";
+import AddAction from "./action/AddAction";
 import SearchLabel from "../search/label/SearchLabel";
 
 function Header() {
@@ -10,7 +10,7 @@ function Header() {
     <div className={classes.header}>
       <div className={classes.top}>
         <Logo/>
-        <AddButton/>
+        <AddAction/>
       </div>
       <br/>
       <br/>

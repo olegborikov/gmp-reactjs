@@ -1,5 +1,6 @@
 .dropdown {
-  font-size: 20px;
+  display: inline;
+  margin-right: 10px;
 }
 
 .select {

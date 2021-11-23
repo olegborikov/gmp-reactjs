@@ -1,4 +1,4 @@
-import {GENRES} from "../../constants/Constant";
+import {GENRES} from "../../../constants/Constant";
 import React from "react";
 import GenreItem from "./genreitem/GenreItem";
 import classes from "./GenresList.module.css";

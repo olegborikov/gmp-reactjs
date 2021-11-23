@@ -43,7 +43,7 @@ ActionsButton.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genres: PropTypes.array.isRequired,
-    releaseYear: PropTypes.string.isRequired
+    releaseDate: PropTypes.string.isRequired
   })
 };
 

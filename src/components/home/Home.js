@@ -1,37 +1,54 @@
 import React, {Component} from "react";
 import classes from "./Home.module.css";
-import GenresList from "../filter/GenresList";
-import ParametersDropdown from "../sort/ParametersDropdown";
+import GenresList from "../filter/genres/GenresList";
 import Movies from "../movies/Movies";
 import MoviesLabel from "../movies/label/MoviesLabel";
 import {MOVIES, SORT_TYPES} from "../../constants/Constant";
+import SortOptions from "../sort/SortOptions";
 
 class Home extends Component {
   state = {
     movies: MOVIES,
-    currentGenre: "All"
+    currentGenre: "All",
+    isAskOrder: true
   }
 
   sortByParameter = this.internalSortByParameter.bind(this);
   filterByGenre = this.internalFilterByGenre.bind(this);
+  switchOrder = this.internalSwitchOrder.bind(this);
 
   internalSortByParameter(parameter) {
     let {movies} = this.state
+    let sortedMovies
     if (parameter === SORT_TYPES[0]) {
-      movies = movies.sort((a, b) => b.releaseYear.localeCompare(a.releaseYear))
+      sortedMovies = movies.sort((a, b) => a.title.localeCompare(b.title))
     } else if (parameter === SORT_TYPES[1]) {
-      movies = movies.sort((a, b) => a.title.localeCompare(b.title))
+      sortedMovies = movies.sort((a, b) => a.releaseDate.localeCompare(b.releaseDate))
+    } else if (parameter === SORT_TYPES[2]) {
+      sortedMovies = movies.sort((a, b) => a.rating.localeCompare(b.rating))
+    } else if (parameter === SORT_TYPES[3]) {
+      sortedMovies = movies.sort((a, b) => a.runtime.localeCompare(b.runtime))
     }
     this.setState({
-      movies: movies
+      movies: sortedMovies
     });
   }
 
   internalFilterByGenre(genre) {
-    let movies = MOVIES.filter(movie => genre === "All" ? true : movie.genres.indexOf(genre) > -1)
+    let filteredMovies = MOVIES.filter(movie => genre === "All" ? true : movie.genres.indexOf(genre) > -1)
     this.setState({
-      movies: movies,
-      currentGenre: genre
+      movies: filteredMovies,
+      currentGenre: genre,
+      isAskOrder: true
+    });
+  }
+
+  internalSwitchOrder() {
+    let {movies} = this.state
+    let orderedMovies = movies.reverse()
+    this.setState({
+      movies: orderedMovies,
+      isAskOrder: !this.state.isAskOrder
     });
   }
 
@@ -41,7 +58,8 @@ class Home extends Component {
       <div className={classes.home}>
         <div className={classes.top}>
           <GenresList filterByGenre={this.filterByGenre} currentGenre={this.state.currentGenre}/>
-          <ParametersDropdown sortByParameter={this.sortByParameter}/>
+          <SortOptions sortByParameter={this.sortByParameter} switchOrder={this.switchOrder}
+                       isAskOrder={this.state.isAskOrder}/>
         </div>
         <br/>
         <MoviesLabel moviesAmount={movies.length}/>

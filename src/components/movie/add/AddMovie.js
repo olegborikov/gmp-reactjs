@@ -15,7 +15,7 @@ function AddMovie(props) {
       <AddText/>
       <div className={classes.inputs}>
         <Input param="TITLE" value={props.title}/>
-        <Input param="RELEASE DATE" value={props.releaseYear}/>
+        <Input param="RELEASE DATE" value={props.releaseDate}/>
         <Input param="MOVIE URL"/>
         <Input param="RATING"/>
         <Input param="GENRE" value={props.genres}/>
@@ -31,8 +31,8 @@ function AddMovie(props) {
 AddMovie.propTypes = {
   toggleAddMovieWindow: PropTypes.func.isRequired,
   title: PropTypes.string,
-  releaseYear: PropTypes.string,
-  genres: PropTypes.string
+  releaseDate: PropTypes.string,
+  genres: PropTypes.array
 };
 
 export default AddMovie;

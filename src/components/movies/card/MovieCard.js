@@ -4,7 +4,7 @@ import classes from "./MovieCard.module.css";
 import ActionsButton from "./actions/ActionsButton";
 
 function MovieCard({movie}) {
-  const {title, genres, releaseYear} = movie
+  const {title, genres, releaseDate} = movie
   return (
     <div className={classes.card}>
       <div className={classes.actions}>
@@ -15,7 +15,7 @@ function MovieCard({movie}) {
           {title}
         </div>
         <div className={classes.year}>
-          {releaseYear}
+          {releaseDate}
         </div>
         <div className={classes.genres}>
           {genres.join(", ")}
@@ -29,7 +29,7 @@ MovieCard.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genres: PropTypes.array.isRequired,
-    releaseYear: PropTypes.string.isRequired
+    releaseDate: PropTypes.string.isRequired
   })
 }
 

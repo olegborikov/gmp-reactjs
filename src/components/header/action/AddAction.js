@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import classes from "./AddButton.module.css";
+import classes from "./AddAction.module.css";
 import AddMovie from "../../movie/add/AddMovie";
 
-class AddButton extends Component {
+class AddAction extends Component {
   state = {
     isVisible: false
   }
@@ -22,4 +22,4 @@ class AddButton extends Component {
   }
 }
 
-export default AddButton;
+export default AddAction;
