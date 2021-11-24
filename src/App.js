@@ -8,8 +8,13 @@ import Footer from "./components/footer/Footer";
 import {MOVIES} from "./constants/Constant";
 
 class App extends Component {
-  state = {
-    movies: MOVIES
+  constructor(props) {
+    super(props)
+    this.state = {movies: []}
+  }
+
+  componentDidMount() {
+    this.setState({movies: MOVIES})
   }
 
   addMovie = this.internalAddMovie.bind(this);
