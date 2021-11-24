@@ -1,16 +1,23 @@
 import MovieCard from "./card/MovieCard";
-import {MOVIES} from "../../constants/Constant";
-import React from 'react';
+import React from "react";
 import classes from "./Movies.module.css";
+import PropTypes from "prop-types";
 
-function Movies() {
+function Movies({movies, deleteMovie, editMovie}) {
   return (
     <div className={classes.movies}>
       {
-        MOVIES.map(value => <MovieCard key={MOVIES.indexOf(value)} title={value.title} genres={value.genres} releaseYear={value.releaseYear}/>)
+        movies.map(value => <MovieCard key={movies.indexOf(value)} movie={value}
+                                       deleteMovie={deleteMovie} editMovie={editMovie}/>)
       }
     </div>
   )
 }
+
+Movies.propTypes = {
+  movies: PropTypes.array.isRequired,
+  deleteMovie: PropTypes.func.isRequired,
+  editMovie: PropTypes.func.isRequired
+};
 
 export default Movies;

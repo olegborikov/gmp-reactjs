@@ -1,3 +1,8 @@
 .item {
   background-color: #232323;
 }
+
+.active {
+  border-color: #f65261;
+}
+

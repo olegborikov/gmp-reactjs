@@ -1,0 +1,32 @@
+.confirm {
+  text-align: right;
+}
+
+.red {
+  background-color: #f65261;
+}
+
+.greyred {
+  background-color: #232323;
+  color: #f65261;
+}
+
+.grey {
+  background-color: #232323;
+}
+
+.black {
+  background-color: #424242;
+  color: #f65261;
+}
+
+.small {
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.large {
+  width: 150px;
+  padding: 10px 20px;
+  margin-right: 10px;
+}

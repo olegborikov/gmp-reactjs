@@ -1,5 +1,5 @@
 .movies {
   display: grid;
   grid-template-areas:
-  "card card card card";
+  "card card card card card";
 }

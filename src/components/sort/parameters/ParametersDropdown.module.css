@@ -1,7 +1,8 @@
 .dropdown {
-  margin-top: 20px;
-  font-size: 20px;
+  display: inline;
+  margin-right: 10px;
 }
+
 .select {
   background-color: #232323;
 }

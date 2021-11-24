@@ -1,18 +1,17 @@
 import React from "react";
-import classes from './Header.module.css';
+import classes from "./Header.module.css";
 import Search from "../search/Search";
 import Logo from "../logo/Logo";
-import AddButton from "./addbutton/AddButton";
+import AddAction from "./action/AddAction";
 import SearchLabel from "../search/label/SearchLabel";
+import PropTypes from "prop-types";
 
-function Header() {
+function Header(props) {
   return (
     <div className={classes.header}>
-      <div>
+      <div className={classes.top}>
         <Logo/>
-        <div className={classes.button}>
-          <AddButton/>
-        </div>
+        <AddAction addMovie={props.addMovie}/>
       </div>
       <br/>
       <br/>
@@ -24,5 +23,9 @@ function Header() {
     </div>
   )
 }
+
+Header.propTypes = {
+  addMovie: PropTypes.func.isRequired
+};
 
 export default Header
