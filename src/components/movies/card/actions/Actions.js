@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import classes from "./ActionsButton.module.css";
 import DeleteMovie from "../../../movie/delete/DeleteMovie";
 import EditMovie from "../../../movie/edit/EditMovie";
 import PropTypes from "prop-types";
+import Button from "../../../common/button/Button";
 
-class ActionsButton extends Component {
+class Actions extends Component {
   state = {
     isDeleteVisible: false,
     isEditVisible: false
@@ -26,14 +26,14 @@ class ActionsButton extends Component {
     return (
       <>
         <div>
-          <button className={classes.button} onClick={this.toggleEditMovieWindow}>Edit</button>
+          <Button action={this.toggleEditMovieWindow} name="Edit" color="grey"/>
           {this.state.isEditVisible ?
             <EditMovie toggleEditMovieWindow={this.toggleEditMovieWindow}
                        movie={this.props.movie}
                        editMovie={this.props.editMovie}/> : null}
         </div>
         <div>
-          <button className={classes.button} onClick={this.toggleDeleteMovieWindow}>Delete</button>
+          <Button action={this.toggleDeleteMovieWindow} name="Delete" color="grey"/>
           {this.state.isDeleteVisible ? <DeleteMovie toggleDeleteMovieWindow={this.toggleDeleteMovieWindow}
                                                      id={this.props.movie.id}
                                                      deleteMovie={this.props.deleteMovie}/> : null}
@@ -43,7 +43,7 @@ class ActionsButton extends Component {
   }
 }
 
-ActionsButton.propTypes = {
+Actions.propTypes = {
   deleteMovie: PropTypes.func.isRequired,
   editMovie: PropTypes.func.isRequired,
   movie: PropTypes.shape({
@@ -58,4 +58,4 @@ ActionsButton.propTypes = {
   })
 };
 
-export default ActionsButton;
+export default Actions;

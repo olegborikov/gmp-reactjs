@@ -1,10 +1,8 @@
 import React, {Component} from "react";
 import classes from "./AddMovie.module.css";
-import CloseButton from "../button/close/CloseButton";
 import AddText from "./text/AddText";
 import Input from "../../common/input/Input";
-import ConfirmButton from "../button/confirm/ConfirmButton";
-import ResetButton from "../button/reset/ResetButton";
+import Button from "../../common/button/Button";
 import DescriptionArea from "./area/DescriptionArea";
 import PropTypes from "prop-types";
 import GenresDropdown from "./dropdown/GenresDropdown";
@@ -91,7 +89,7 @@ class AddMovie extends Component {
 
     return (
       <div className={classes.popup}>
-        <CloseButton action={this.props.toggleAddMovieWindow}/>
+        <Button action={this.props.toggleAddMovieWindow} name="X" color="grey"/>
         <AddText/>
         <div className={classes.inputs}>
           <Input param="TITLE" value={this.state.title} onChange={onTitleChange}/>
@@ -103,8 +101,8 @@ class AddMovie extends Component {
           <GenresDropdown genres={this.state.genres} onChange={onGenreChange}/>
         </div>
         <DescriptionArea value={this.state.overview} onChange={onOverviewChange}/>
-        <ResetButton action={this.resetValues}/>
-        <ConfirmButton name="SUBMIT" action={onButtonClick}/>
+        <Button action={this.resetValues} name="RESET" color="grey-red"/>
+        <Button name="SUBMIT" action={onButtonClick}/>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import {GENRES} from "../../../constants/Constant";
 import React from "react";
-import GenreItem from "./genreitem/GenreItem";
+import GenreItem from "./item/GenreItem";
 import classes from "./GenresList.module.css";
 import PropTypes from "prop-types";
 

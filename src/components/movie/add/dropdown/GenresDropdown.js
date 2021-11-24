@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import classes from "./GenresDropdown.module.css";
 import PropTypes from "prop-types";
 import {GENRES} from "../../../../constants/Constant";

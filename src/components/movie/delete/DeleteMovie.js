@@ -1,8 +1,7 @@
 import React from "react";
 import classes from "./DeleteMovie.module.css";
 import DeleteText from "./text/DeleteText";
-import CloseButton from "../button/close/CloseButton";
-import ConfirmButton from "../button/confirm/ConfirmButton";
+import Button from "../../common/button/Button";
 import PropTypes from "prop-types";
 
 function DeleteMovie(props) {
@@ -13,9 +12,9 @@ function DeleteMovie(props) {
 
   return (
     <div className={classes.popup}>
-      <CloseButton action={props.toggleDeleteMovieWindow}/>
+      <Button action={props.toggleDeleteMovieWindow} name="X" color="grey"/>
       <DeleteText/>
-      <ConfirmButton name="CONFIRM" action={onButtonClick}/>
+      <Button name="CONFIRM" action={onButtonClick}/>
     </div>
   )
 }

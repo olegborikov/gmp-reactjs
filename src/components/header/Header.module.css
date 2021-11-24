@@ -8,7 +8,7 @@
   margin-top: 30px;
   display: grid;
   grid-template-areas:
-  "logo addbutton";
+  "logo button";
   grid-template-columns: 7fr 1fr;
 }
 

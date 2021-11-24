@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import classes from "./AddAction.module.css";
 import AddMovie from "../../movie/add/AddMovie";
 import PropTypes from "prop-types";
+import Button from "../../common/button/Button";
 
 class AddAction extends Component {
   state = {
@@ -16,7 +16,7 @@ class AddAction extends Component {
   render() {
     return (
       <>
-        <button className={classes.button} onClick={this.toggleAddMovieWindow}>+ ADD MOVIE</button>
+        <Button action={this.toggleAddMovieWindow} name="+ ADD MOVIE" size="large" color="black"/>
         {this.state.isVisible ? <AddMovie toggleAddMovieWindow={this.toggleAddMovieWindow}
                                           action={this.props.addMovie}/> : null}
       </>

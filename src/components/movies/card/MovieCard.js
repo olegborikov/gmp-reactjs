@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classes from "./MovieCard.module.css";
-import ActionsButton from "./actions/ActionsButton";
+import Actions from "./actions/Actions";
 
 function MovieCard({movie, deleteMovie, editMovie}) {
   const {title, genres, releaseDate} = movie
   return (
     <div className={classes.card}>
       <div className={classes.actions}>
-        <ActionsButton movie={movie} deleteMovie={deleteMovie} editMovie={editMovie}/>
+        <Actions movie={movie} deleteMovie={deleteMovie} editMovie={editMovie}/>
       </div>
       <div className={classes.text}>
         <div className={classes.title}>
