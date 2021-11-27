@@ -25,19 +25,6 @@ function MovieInfoHeader(props) {
           {props.movie.overview}
         </div>
       </div>
-
-
-     {/* <div className={classes.text}>
-        <div className={classes.title} onClick={(e) => selectDescription(movie.id)}>
-          {title}
-        </div>
-        <div className={classes.year}>
-          {releaseDate}
-        </div>
-        <div className={classes.genres}>
-          {genres.join(", ")}
-        </div>
-      </div>*/}
     </div>
   )
 }
