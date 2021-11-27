@@ -6,13 +6,13 @@ import PropTypes from "prop-types";
 
 function DeleteMovie(props) {
   const onButtonClick = () => {
-    props.toggleDeleteMovieWindow()
+    props.toggleWindow()
     props.deleteMovie(props.id)
   }
 
   return (
     <div className={classes.popup}>
-      <Button action={props.toggleDeleteMovieWindow} name="X" color="grey"/>
+      <Button action={props.toggleWindow} name="X" color="grey"/>
       <DeleteText/>
       <Button name="CONFIRM" action={onButtonClick}/>
     </div>
@@ -20,7 +20,7 @@ function DeleteMovie(props) {
 }
 
 DeleteMovie.propTypes = {
-  toggleDeleteMovieWindow: PropTypes.func.isRequired,
+  toggleWindow: PropTypes.func.isRequired,
   deleteMovie: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired
 };

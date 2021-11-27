@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 function EditMovie(props) {
   return (
-    <AddMovie toggleAddMovieWindow={props.toggleEditMovieWindow}
+    <AddMovie toggleWindow={props.toggleWindow}
               action={props.editMovie}
               id={props.movie.id}
               title={props.movie.title}
@@ -18,7 +18,7 @@ function EditMovie(props) {
 }
 
 EditMovie.propTypes = {
-  toggleEditMovieWindow: PropTypes.func.isRequired,
+  toggleWindow: PropTypes.func.isRequired,
   editMovie: PropTypes.func.isRequired,
   movie: PropTypes.shape({
     id: PropTypes.number.isRequired,

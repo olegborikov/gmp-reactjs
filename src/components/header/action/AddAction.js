@@ -1,27 +1,21 @@
-import React, {Component} from "react";
+import React, {useCallback, useState} from "react";
 import AddMovie from "../../movie/add/AddMovie";
 import PropTypes from "prop-types";
 import Button from "../../common/button/Button";
 
-class AddAction extends Component {
-  state = {
-    isVisible: false
-  }
-  toggleAddMovieWindow = () => {
-    this.setState({
-      isVisible: !this.state.isVisible
-    });
-  }
+function AddAction(props) {
+  const [isVisible, setVisible] = useState(false)
 
-  render() {
-    return (
-      <>
-        <Button action={this.toggleAddMovieWindow} name="+ ADD MOVIE" size="large" color="black"/>
-        {this.state.isVisible ? <AddMovie toggleAddMovieWindow={this.toggleAddMovieWindow}
-                                          action={this.props.addMovie}/> : null}
-      </>
-    );
-  }
+  const toggleWindow = useCallback(
+    () => setVisible(!isVisible),
+    [isVisible]
+  )
+  return (
+    <>
+      <Button action={toggleWindow} name="+ ADD MOVIE" size="large" color="black"/>
+      {isVisible ? <AddMovie toggleWindow={toggleWindow} action={props.addMovie}/> : null}
+    </>
+  );
 }
 
 AddAction.propTypes = {

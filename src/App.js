@@ -1,5 +1,5 @@
 import "antd/dist/antd.css";
-import React, {Component} from "react";
+import React, {useEffect, useState} from "react";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import "./App.css";
 import Header from "./components/header/Header";
@@ -7,54 +7,37 @@ import Home from "./components/home/Home";
 import Footer from "./components/footer/Footer";
 import {MOVIES} from "./constants/Constant";
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {movies: []}
+function App() {
+  const [movies, setMovies] = useState(MOVIES);
+
+  useEffect(() => {
+    setMovies(MOVIES)
+  }, [])
+
+  const addMovie = (movie) => {
+    movie.id = movies.length + 1
+    setMovies([...movies, movie])
   }
 
-  componentDidMount() {
-    this.setState({movies: MOVIES})
-  }
-
-  addMovie = this.internalAddMovie.bind(this);
-  deleteMovie = this.internalDeleteMovie.bind(this);
-  editMovie = this.internalEditMovie.bind(this);
-
-  internalAddMovie(movie) {
-    movie.id = this.state.movies.length + 1
-    this.setState({
-      movies: [...this.state.movies, movie]
-    });
-  }
-
-  internalDeleteMovie(id) {
-    const movies = this.state.movies
+  const deleteMovie = (id) => {
     const updatedMovies = movies.filter(movie => movie.id !== id)
-    this.setState({
-      movies: updatedMovies
-    })
+    setMovies(updatedMovies)
   }
 
-  internalEditMovie(movie) {
-    const movies = this.state.movies
+  const editMovie = (movie) => {
     const updatedMovies = movies.filter(currentMovie => currentMovie.id !== movie.id)
-    this.setState({
-      movies: [...updatedMovies, movie]
-    });
+    setMovies([...updatedMovies, movie])
   }
 
-  render() {
-    return (
-      <ErrorBoundary>
-        <div className="app">
-          <Header addMovie={this.addMovie}/>
-          <Home movies={this.state.movies} deleteMovie={this.deleteMovie} editMovie={this.editMovie}/>
-          <Footer/>
-        </div>
-      </ErrorBoundary>
-    )
-  }
+  return (
+    <ErrorBoundary>
+      <div className="app">
+        <Header addMovie={addMovie}/>
+        <Home movies={movies} deleteMovie={deleteMovie} editMovie={editMovie}/>
+        <Footer/>
+      </div>
+    </ErrorBoundary>
+  )
 }
 
 export default App
