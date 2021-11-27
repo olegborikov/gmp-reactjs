@@ -53,7 +53,8 @@ function Home(props) {
       <br/>
       <MoviesLabel moviesAmount={movies.length}/>
       <br/>
-      <Movies movies={movies} deleteMovie={props.deleteMovie} editMovie={props.editMovie}/>
+      <Movies movies={movies} deleteMovie={props.deleteMovie} editMovie={props.editMovie}
+              selectDescription={props.selectDescription}/>
     </div>
   );
 }
@@ -61,7 +62,8 @@ function Home(props) {
 Home.propTypes = {
   movies: PropTypes.array.isRequired,
   deleteMovie: PropTypes.func.isRequired,
-  editMovie: PropTypes.func.isRequired
+  editMovie: PropTypes.func.isRequired,
+  selectDescription: PropTypes.func.isRequired
 };
 
 export default Home

@@ -9,10 +9,21 @@ import {MOVIES} from "./constants/Constant";
 
 function App() {
   const [movies, setMovies] = useState(MOVIES);
+  const [selectedMovie, setSelectedMovie] = useState({});
+  const [isDescriptionVisible, setDescriptionVisible] = useState(false);
 
   useEffect(() => {
     setMovies(MOVIES)
   }, [])
+
+  const selectDescription = (id) => {
+    setSelectedMovie(movies.find(movie => movie.id === id))
+    setDescriptionVisible(true)
+  }
+
+  const selectSearch = () => {
+    setDescriptionVisible(false)
+  }
 
   const addMovie = (movie) => {
     movie.id = movies.length + 1
@@ -32,8 +43,8 @@ function App() {
   return (
     <ErrorBoundary>
       <div className="app">
-        <Header addMovie={addMovie}/>
-        <Home movies={movies} deleteMovie={deleteMovie} editMovie={editMovie}/>
+        <Header addMovie={addMovie} isDescriptionVisible={isDescriptionVisible} selectSearch={selectSearch} movie={selectedMovie}/>
+        <Home movies={movies} deleteMovie={deleteMovie} editMovie={editMovie} selectDescription={selectDescription}/>
         <Footer/>
       </div>
     </ErrorBoundary>
