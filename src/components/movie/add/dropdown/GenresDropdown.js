@@ -2,18 +2,14 @@ import React, {useCallback, useState} from "react";
 import classes from "./GenresDropdown.module.css";
 import PropTypes from "prop-types";
 import {GENRES} from "../../../../constants/Constant";
+import {useToggleWindow} from "../../../hooks/useToggleWindow";
 
 function GenresDropdown(props) {
-  const [isVisible, setVisible] = useState(false)
-
-  const toggleDropdown = useCallback(
-    () => setVisible(!isVisible),
-    [isVisible]
-  )
+  const [isVisible, toggleVisible] = useToggleWindow()
 
   return (
     <div className={classes.dropdown}>
-      <div onClick={(e) => toggleDropdown()}>
+      <div onClick={(e) => toggleVisible()}>
         >
       </div>
       {isVisible ?

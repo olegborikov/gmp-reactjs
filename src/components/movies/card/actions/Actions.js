@@ -3,33 +3,24 @@ import DeleteMovie from "../../../movie/delete/DeleteMovie";
 import EditMovie from "../../../movie/edit/EditMovie";
 import PropTypes from "prop-types";
 import Button from "../../../common/button/Button";
+import {useToggleWindow} from "../../../hooks/useToggleWindow";
 
 function Actions(props) {
-  const [isEditVisible, setEditVisible] = useState(false)
-  const [isDeleteVisible, setDeleteVisible] = useState(false)
-
-  const toggleEditMovieWindow = useCallback(
-    () => setEditVisible(!isEditVisible),
-    [isEditVisible]
-  )
-
-  const toggleDeleteMovieWindow = useCallback(
-    () => setDeleteVisible(!isDeleteVisible),
-    [isDeleteVisible]
-  )
+  const [isEditVisible, toggleEdit] = useToggleWindow()
+  const [isDeleteVisible, toggleDelete] = useToggleWindow()
 
   return (
     <>
       <div>
-        <Button action={toggleEditMovieWindow} name="Edit" color="grey"/>
+        <Button action={toggleEdit} name="Edit" color="grey"/>
         {isEditVisible ?
-          <EditMovie toggleWindow={toggleEditMovieWindow}
+          <EditMovie toggleWindow={toggleEdit}
                      movie={props.movie}
                      editMovie={props.editMovie}/> : null}
       </div>
       <div>
-        <Button action={toggleDeleteMovieWindow} name="Delete" color="grey"/>
-        {isDeleteVisible ? <DeleteMovie toggleWindow={toggleDeleteMovieWindow}
+        <Button action={toggleDelete} name="Delete" color="grey"/>
+        {isDeleteVisible ? <DeleteMovie toggleWindow={toggleDelete}
                                         id={props.movie.id}
                                         deleteMovie={props.deleteMovie}/> : null}
       </div>

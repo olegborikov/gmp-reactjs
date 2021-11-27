@@ -1,19 +1,16 @@
-import React, {useCallback, useState} from "react";
+import React from "react";
 import AddMovie from "../../../movie/add/AddMovie";
 import PropTypes from "prop-types";
 import Button from "../../../common/button/Button";
+import {useToggleWindow} from "../../../hooks/useToggleWindow";
 
 function AddAction(props) {
-  const [isVisible, setVisible] = useState(false)
+  const [isVisible, toggleVisible] = useToggleWindow()
 
-  const toggleWindow = useCallback(
-    () => setVisible(!isVisible),
-    [isVisible]
-  )
   return (
     <>
-      <Button action={toggleWindow} name="+ ADD MOVIE" size="large" color="black"/>
-      {isVisible ? <AddMovie toggleWindow={toggleWindow} action={props.addMovie}/> : null}
+      <Button action={toggleVisible} name="+ ADD MOVIE" size="large" color="black"/>
+      {isVisible ? <AddMovie toggleWindow={toggleVisible} action={props.addMovie}/> : null}
     </>
   );
 }
