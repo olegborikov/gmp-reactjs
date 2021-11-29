@@ -17,12 +17,14 @@ function Home(props) {
     const filteredMovies = filterByGenre(props.movies, currentGenre)
     const sortedMovies = sortByParameter(filteredMovies, currentParameter)
     setMovies(sortedMovies)
+    setAskOrder(true)
   }, [props.movies])
 
   const sortByParameterAction = (parameter) => {
     let sortedMovies = sortByParameter(movies, parameter)
-    setCurrentParameter(setCurrentParameter)
+    setCurrentParameter(parameter)
     setMovies(sortedMovies)
+    setAskOrder(true)
   }
 
   const sortByParameter = (movies, parameter) => {
