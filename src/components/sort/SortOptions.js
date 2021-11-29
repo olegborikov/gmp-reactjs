@@ -9,7 +9,7 @@ function SortOptions(props) {
   return (
     <div className={classes.sort}>
       <SortLabel/>
-      <ParametersDropdown sortByParameter={props.sortByParameter}/>
+      <ParametersDropdown sortByParameter={props.sortByParameter} currentParameter={props.currentParameter}/>
       <SortOrder switchOrder={props.switchOrder} isAskOrder={props.isAskOrder}/>
     </div>
   );
@@ -18,7 +18,8 @@ function SortOptions(props) {
 SortOptions.propTypes = {
   sortByParameter: PropTypes.func.isRequired,
   switchOrder: PropTypes.func.isRequired,
-  isAskOrder: PropTypes.bool.isRequired
+  isAskOrder: PropTypes.bool.isRequired,
+  currentParameter: PropTypes.string.isRequired
 };
 
 export default SortOptions;

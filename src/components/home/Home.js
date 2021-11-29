@@ -8,15 +8,24 @@ import SortOptions from "../sort/SortOptions";
 import PropTypes from "prop-types";
 
 function Home(props) {
-  const [movies, setMovies] = useState(props.movies);
+  const [movies, setMovies] = useState([]);
   const [currentGenre, setCurrentGenre] = useState("All");
+  const [currentParameter, setCurrentParameter] = useState("TITLE");
   const [isAskOrder, setAskOrder] = useState(true);
 
   useEffect(() => {
-    setMovies(props.movies)
+    const filteredMovies = filterByGenre(props.movies, currentGenre)
+    const sortedMovies = sortByParameter(filteredMovies, currentParameter)
+    setMovies(sortedMovies)
   }, [props.movies])
 
-  const sortByParameter = (parameter) => {
+  const sortByParameterAction = (parameter) => {
+    let sortedMovies = sortByParameter(movies, parameter)
+    setCurrentParameter(setCurrentParameter)
+    setMovies(sortedMovies)
+  }
+
+  const sortByParameter = (movies, parameter) => {
     let sortedMovies = [...movies]
     if (parameter === SORT_TYPES[0]) {
       sortedMovies.sort((a, b) => a.title.localeCompare(b.title))
@@ -27,34 +36,44 @@ function Home(props) {
     } else if (parameter === SORT_TYPES[3]) {
       sortedMovies.sort((a, b) => a.runtime - b.runtime)
     }
-    setMovies(sortedMovies)
+    return sortedMovies;
   }
 
-  const filterByGenre = (genre) => {
-    const filteredMovies = props.movies.filter(movie => genre === "All" ? true : movie.genres.indexOf(genre) > -1)
-    setMovies(filteredMovies)
+  const filterByGenreAction = (genre) => {
+    const filteredMovies = filterByGenre(props.movies, genre)
+    const sortedMovies = sortByParameter(filteredMovies, currentParameter)
+    setMovies(sortedMovies)
     setCurrentGenre(genre)
     setAskOrder(true)
   }
 
-  const switchOrder = () => {
-    let orderedMovies = [...movies]
-    orderedMovies.reverse()
+  const filterByGenre = (movies, genre) => {
+    return movies.filter(movie => genre === "All" ? true : movie.genres.indexOf(genre) > -1)
+  }
+
+  const switchOrderAction = () => {
+    let orderedMovies = switchOrder(movies)
     setMovies(orderedMovies)
     setAskOrder(!isAskOrder)
+  }
+
+  const switchOrder = (movies) => {
+    let orderedMovies = [...movies]
+    return orderedMovies.reverse()
   }
 
   return (
     <div className={classes.home}>
       <div className={classes.top}>
-        <GenresList filterByGenre={filterByGenre} currentGenre={currentGenre}/>
-        <SortOptions sortByParameter={sortByParameter} switchOrder={switchOrder} isAskOrder={isAskOrder}/>
+        <GenresList filterByGenre={filterByGenreAction} currentGenre={currentGenre}/>
+        <SortOptions sortByParameter={sortByParameterAction} switchOrder={switchOrderAction} isAskOrder={isAskOrder}
+                     currentParameter={currentParameter}/>
       </div>
       <br/>
       <MoviesLabel moviesAmount={movies.length}/>
       <br/>
       <Movies movies={movies} deleteMovie={props.deleteMovie} editMovie={props.editMovie}
-              selectDescription={props.selectDescription}/>
+              showDescription={props.showDescription}/>
     </div>
   );
 }
@@ -63,7 +82,7 @@ Home.propTypes = {
   movies: PropTypes.array.isRequired,
   deleteMovie: PropTypes.func.isRequired,
   editMovie: PropTypes.func.isRequired,
-  selectDescription: PropTypes.func.isRequired
+  showDescription: PropTypes.func.isRequired
 };
 
 export default Home

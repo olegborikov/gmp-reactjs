@@ -8,7 +8,7 @@ import Footer from "./components/footer/Footer";
 import {MOVIES} from "./constants/Constant";
 
 function App() {
-  const [movies, setMovies] = useState(MOVIES);
+  const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState({});
   const [isDescriptionVisible, setDescriptionVisible] = useState(false);
 
@@ -16,7 +16,7 @@ function App() {
     setMovies(MOVIES)
   }, [])
 
-  const selectDescription = (id) => {
+  const showDescription = (id) => {
     setSelectedMovie(movies.find(movie => movie.id === id))
     setDescriptionVisible(true)
   }
@@ -36,15 +36,16 @@ function App() {
   }
 
   const editMovie = (movie) => {
-    const updatedMovies = movies.filter(currentMovie => currentMovie.id !== movie.id)
-    setMovies([...updatedMovies, movie])
+    const updatedMovies = movies.map(currentMovie => currentMovie.id === movie.id ? movie : currentMovie)
+    setMovies([...updatedMovies])
   }
 
   return (
     <ErrorBoundary>
       <div className="app">
-        <Header addMovie={addMovie} isDescriptionVisible={isDescriptionVisible} selectSearch={selectSearch} movie={selectedMovie}/>
-        <Home movies={movies} deleteMovie={deleteMovie} editMovie={editMovie} selectDescription={selectDescription}/>
+        <Header addMovie={addMovie} isDescriptionVisible={isDescriptionVisible} selectSearch={selectSearch}
+                movie={selectedMovie}/>
+        <Home movies={movies} deleteMovie={deleteMovie} editMovie={editMovie} showDescription={showDescription}/>
         <Footer/>
       </div>
     </ErrorBoundary>
