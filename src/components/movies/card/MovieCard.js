@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classes from "./MovieCard.module.css";
 import Actions from "./actions/Actions";
 
-function MovieCard({movie, deleteMovie, editMovie}) {
+function MovieCard({movie, deleteMovie, editMovie, showDescription}) {
   const {title, genres, releaseDate} = movie
   return (
     <div className={classes.card}>
@@ -11,14 +11,14 @@ function MovieCard({movie, deleteMovie, editMovie}) {
         <Actions movie={movie} deleteMovie={deleteMovie} editMovie={editMovie}/>
       </div>
       <div className={classes.text}>
-        <div className={classes.title}>
+        <div className={classes.title} onClick={(e) => showDescription(movie.id)}>
           {title}
         </div>
         <div className={classes.year}>
           {releaseDate}
         </div>
         <div className={classes.genres}>
-          {genres.join(", ")}
+          {genres?.join(", ")}
         </div>
       </div>
     </div>
@@ -28,6 +28,7 @@ function MovieCard({movie, deleteMovie, editMovie}) {
 MovieCard.propTypes = {
   deleteMovie: PropTypes.func.isRequired,
   editMovie: PropTypes.func.isRequired,
+  showDescription: PropTypes.func.isRequired,
   movie: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

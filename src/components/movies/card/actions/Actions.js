@@ -1,46 +1,31 @@
-import React, {Component} from "react";
+import React, {useCallback, useState} from "react";
 import DeleteMovie from "../../../movie/delete/DeleteMovie";
 import EditMovie from "../../../movie/edit/EditMovie";
 import PropTypes from "prop-types";
 import Button from "../../../common/button/Button";
+import {useToggleWindow} from "../../../hooks/useToggleWindow";
 
-class Actions extends Component {
-  state = {
-    isDeleteVisible: false,
-    isEditVisible: false
-  }
+function Actions(props) {
+  const [isEditVisible, toggleEdit] = useToggleWindow()
+  const [isDeleteVisible, toggleDelete] = useToggleWindow()
 
-  toggleDeleteMovieWindow = () => {
-    this.setState({
-      isDeleteVisible: !this.state.isDeleteVisible
-    });
-  }
-
-  toggleEditMovieWindow = () => {
-    this.setState({
-      isEditVisible: !this.state.isEditVisible
-    });
-  }
-
-  render() {
-    return (
-      <>
-        <div>
-          <Button action={this.toggleEditMovieWindow} name="Edit" color="grey"/>
-          {this.state.isEditVisible ?
-            <EditMovie toggleEditMovieWindow={this.toggleEditMovieWindow}
-                       movie={this.props.movie}
-                       editMovie={this.props.editMovie}/> : null}
-        </div>
-        <div>
-          <Button action={this.toggleDeleteMovieWindow} name="Delete" color="grey"/>
-          {this.state.isDeleteVisible ? <DeleteMovie toggleDeleteMovieWindow={this.toggleDeleteMovieWindow}
-                                                     id={this.props.movie.id}
-                                                     deleteMovie={this.props.deleteMovie}/> : null}
-        </div>
-      </>
-    )
-  }
+  return (
+    <>
+      <div>
+        <Button action={toggleEdit} name="Edit" color="grey"/>
+        {isEditVisible ?
+          <EditMovie toggleWindow={toggleEdit}
+                     movie={props.movie}
+                     editMovie={props.editMovie}/> : null}
+      </div>
+      <div>
+        <Button action={toggleDelete} name="Delete" color="grey"/>
+        {isDeleteVisible ? <DeleteMovie toggleWindow={toggleDelete}
+                                        id={props.movie.id}
+                                        deleteMovie={props.deleteMovie}/> : null}
+      </div>
+    </>
+  )
 }
 
 Actions.propTypes = {

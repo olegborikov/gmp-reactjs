@@ -1,0 +1,43 @@
+.header {
+  grid-area: header;
+  margin-bottom: 15px;
+  background-color: #232323;
+}
+
+.top {
+  margin-top: 30px;
+  display: grid;
+  grid-template-areas:
+  "logo div";
+  grid-template-columns: 20fr 1fr;
+}
+
+.loop{
+  font-size: 25px;
+}
+
+.title {
+  font-size: 30px;
+  display: inline;
+  font-weight: 100
+}
+
+.info {
+  margin-left: 40%;
+  margin-right: 5%;
+}
+
+.genres {
+  color: #555555;
+}
+
+.date {
+  font-size: 20px;
+  color: #f65261;
+  font-weight: 100
+}
+
+.overview {
+  color: #555555;
+  font-size: 20px;
+}
