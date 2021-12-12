@@ -1,7 +1,16 @@
-import {SET_GENRE, SET_MOVIES, SET_ORDER, SET_PARAMETER, SET_SELECTED_MOVIE} from "../../constants/actionTypes"
+import {
+  SET_ERROR,
+  SET_GENRE,
+  SET_MOVIES,
+  SET_ORDER,
+  SET_PARAMETER,
+  SET_SELECTED_MOVIE
+} from "../../constants/actionTypes"
 
 export default (state = [], action) => {
   switch (action.type) {
+    case SET_ERROR:
+      return {...state, error: action.error}
     case SET_MOVIES:
       return {...state, movies: action.payload}
     case SET_SELECTED_MOVIE:

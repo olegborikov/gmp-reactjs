@@ -1,6 +1,6 @@
 import {
   ADD_MOVIE,
-  DELETE_MOVIE,
+  DELETE_MOVIE, SET_ERROR,
   SET_GENRE,
   SET_MOVIES,
   SET_ORDER,
@@ -35,6 +35,9 @@ export const filterMovies = (dispatch, genre, sortBy, sortOrder) => {
     .then(movies => {
       dispatch(setMovies(movies))
     })
+    .catch(reason => {
+      dispatch(setError(reason));
+    })
 }
 
 export const findMovieById = (dispatch, id) => {
@@ -42,7 +45,15 @@ export const findMovieById = (dispatch, id) => {
     .then(movie => {
       dispatch(setSelectedMovie(movie))
     })
+    .catch(reason => {
+      dispatch(setError(reason));
+    })
 }
+
+export const setError = (reason) => ({
+  type: SET_ERROR,
+  error: reason
+})
 
 export const setMovies = (movies) => ({
   type: SET_MOVIES,
