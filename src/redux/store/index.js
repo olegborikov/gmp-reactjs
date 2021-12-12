@@ -12,6 +12,7 @@ const initial = {
       data: [],
       totalAmount: 0
     },
+    error: null,
     currentGenre: "All",
     currentParameter: "TITLE",
     currentOrder: "ASC"

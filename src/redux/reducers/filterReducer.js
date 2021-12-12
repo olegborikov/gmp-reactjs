@@ -12,15 +12,15 @@ export default (state = [], action) => {
     case SET_ERROR:
       return {...state, error: action.error}
     case SET_MOVIES:
-      return {...state, movies: action.payload}
+      return {...state, movies: action.payload, error: null}
     case SET_SELECTED_MOVIE:
-      return {...state, selectedMovie: action.payload}
+      return {...state, selectedMovie: action.payload, error: null}
     case SET_GENRE:
-      return {...state, currentGenre: action.payload}
+      return {...state, currentGenre: action.payload, error: null}
     case SET_PARAMETER:
-      return {...state, currentParameter: action.payload}
+      return {...state, currentParameter: action.payload, error: null}
     case SET_ORDER:
-      return {...state, currentOrder: action.payload}
+      return {...state, currentOrder: action.payload, error: null}
     default:
       return state
   }

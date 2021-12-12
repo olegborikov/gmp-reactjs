@@ -9,22 +9,30 @@ import {connect} from "react-redux";
 
 function mapStateToProps(state) {
   const {movies} = state.filterReducer
+  const {error} = state.filterReducer
+
   return {
-    totalAmount: movies?.totalAmount
+    totalAmount: movies?.totalAmount,
+    error: error?.toString()
   }
 }
 
 function Home(props) {
   return (
     <div className={classes.home}>
-      <div className={classes.top}>
-        <GenresList/>
-        <SortOptions/>
-      </div>
-      <br/>
-      <MoviesLabel moviesAmount={props.totalAmount}/>
-      <br/>
-      <Movies showDescription={props.showDescription}/>
+      {
+        props.error ?<p className={classes.error}>{props.error}</p>
+          : <>
+            <div className={classes.top}>
+              <GenresList/>
+              <SortOptions/>
+            </div>
+            <br/>
+            <MoviesLabel moviesAmount={props.totalAmount}/>
+            <br/>
+            <Movies showDescription={props.showDescription}/>
+          </>
+      }
     </div>
   );
 }
