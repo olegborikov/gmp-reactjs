@@ -1,15 +1,20 @@
 .card {
   width: 275px;
-  height: 350px;
+
   color: white;
   background-color: #232323;
+}
+
+.blank {
+  height: 250px;
 }
 
 .text {
   display: grid;
   grid-template-areas:
   "title year";
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 4fr 2fr;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1));
 }
 
 .genres {

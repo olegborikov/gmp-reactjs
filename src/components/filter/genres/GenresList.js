@@ -1,24 +1,17 @@
-import {GENRES} from "../../../constants/Constant";
+import {GENRES} from "../../../constants";
 import React from "react";
 import GenreItem from "./item/GenreItem";
 import classes from "./GenresList.module.css";
-import PropTypes from "prop-types";
 
-function GenresList(props) {
+function GenresList() {
   return (
     <div className={classes.list}>
-      <GenreItem name="All" filterByGenre={props.filterByGenre} currentGenre={props.currentGenre}/>
+      <GenreItem name="All"/>
       {
-        GENRES.map(genre => <GenreItem key={GENRES.indexOf(genre)} name={genre} filterByGenre={props.filterByGenre}
-                                       currentGenre={props.currentGenre}/>)
+        GENRES.map(genre => <GenreItem key={GENRES.indexOf(genre)} name={genre}/>)
       }
     </div>
   )
 }
-
-GenresList.propTypes = {
-  currentGenre: PropTypes.string.isRequired,
-  filterByGenre: PropTypes.func.isRequired
-};
 
 export default GenresList

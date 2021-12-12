@@ -5,12 +5,11 @@ import PropTypes from "prop-types";
 function EditMovie(props) {
   return (
     <AddMovie toggleWindow={props.toggleWindow}
-              action={props.editMovie}
               id={props.movie.id}
               title={props.movie.title}
-              releaseDate={props.movie.releaseDate}
-              movieUrl={props.movie.movieUrl}
-              rating={props.movie.rating}
+              release_date={props.movie.release_date}
+              poster_path={props.movie.poster_path}
+              vote_average={props.movie.vote_average}
               runtime={props.movie.runtime}
               overview={props.movie.overview}
               genres={props.movie.genres}/>
@@ -19,16 +18,15 @@ function EditMovie(props) {
 
 EditMovie.propTypes = {
   toggleWindow: PropTypes.func.isRequired,
-  editMovie: PropTypes.func.isRequired,
   movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
-    movieUrl: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    runtime: PropTypes.number.isRequired,
-    overview: PropTypes.string.isRequired,
-    genres: PropTypes.array.isRequired
+    id: PropTypes.number,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    poster_path: PropTypes.string,
+    vote_average: PropTypes.number,
+    runtime: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.array
   })
 };
 

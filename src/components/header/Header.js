@@ -6,16 +6,14 @@ import MovieInfoHeader from "./info/MovieInfoHeader";
 function Header(props) {
   return (
     props.isDescriptionVisible ?
-      <MovieInfoHeader movie={props.movie} selectSearch={props.selectSearch}/>
-      : <SearchHeader addMovie={props.addMovie} isDescriptionVisible={props.isDescriptionVisible}/>
+      <MovieInfoHeader selectSearch={props.selectSearch}/>
+      : <SearchHeader/>
   )
 }
 
 Header.propTypes = {
-  addMovie: PropTypes.func.isRequired,
   isDescriptionVisible: PropTypes.bool.isRequired,
-  selectSearch: PropTypes.func.isRequired,
-  movie: PropTypes.object
+  selectSearch: PropTypes.func.isRequired
 };
 
 export default Header

@@ -1,18 +1,25 @@
 import React from "react";
-import PropTypes from "prop-types";
 import classes from "./SortOrder.module.css";
+import {connect} from "react-redux";
+import {changeOrder} from "../../../redux/actions";
+
+function mapStateToProps(state) {
+  return {
+    currentOrder: state.filterReducer.currentOrder
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  changeOrder: (order) => dispatch(changeOrder(order))
+})
 
 function SortOrder(props) {
+  const newOrder = props.currentOrder === "ASC" ? "DESC" : "ASC"
   return (
-    <div className={classes.order} onClick={(e) => props.switchOrder()}>
-      {props.isAskOrder ? "▲" : "▼"}
+    <div className={classes.order} onClick={(e) => props.changeOrder(newOrder)}>
+      {props.currentOrder === "ASC" ? "▲" : "▼"}
     </div>
   );
 }
 
-SortOrder.propTypes = {
-  switchOrder: PropTypes.func.isRequired,
-  isAskOrder: PropTypes.bool.isRequired
-};
-
-export default SortOrder;
+export default connect(mapStateToProps, mapDispatchToProps)(SortOrder)
