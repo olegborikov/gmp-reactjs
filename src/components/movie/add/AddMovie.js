@@ -10,9 +10,9 @@ import GenresDropdown from "./dropdown/GenresDropdown";
 function AddMovie(props) {
   const [id, setId] = useState(props.id);
   const [title, setTitle] = useState(props.title);
-  const [releaseDate, setReleaseDate] = useState(props.releaseDate);
-  const [movieUrl, setMovieUrl] = useState(props.movieUrl);
-  const [rating, setRating] = useState(props.rating);
+  const [releaseDate, setReleaseDate] = useState(props.release_date);
+  const [movieUrl, setMovieUrl] = useState(props.poster_path);
+  const [rating, setRating] = useState(props.vote_average);
   const [genres, setGenres] = useState(props.genres ? props.genres : []);
   const [runtime, setRuntime] = useState(props.runtime);
   const [overview, setOverview] = useState(props.overview);
@@ -20,27 +20,16 @@ function AddMovie(props) {
   const resetValues = () => {
     setId(props.id ? props.id : "")
     setTitle(props.title ? props.title : "")
-    setReleaseDate(props.releaseDate ? props.releaseDate : "")
-    setMovieUrl(props.movieUrl ? props.movieUrl : "")
-    setRating(props.rating ? props.rating : "")
+    setReleaseDate(props.release_date ? props.release_date : "")
+    setMovieUrl(props.poster_path ? props.poster_path : "")
+    setRating(props.vote_average ? props.vote_average : "")
     setGenres(props.genres ? props.genres : [])
     setRuntime(props.runtime ? props.runtime : "")
     setOverview(props.overview ? props.overview : "")
   }
 
   const onButtonClick = () => {
-    const movie = {
-      id: id,
-      title: title,
-      releaseDate: releaseDate,
-      movieUrl: movieUrl,
-      rating: rating,
-      genres: genres,
-      runtime: runtime,
-      overview: overview,
-    }
     props.toggleWindow()
-    props.action(movie)
   }
 
   const onTitleChange = (event) => setTitle(event.target?.value)
@@ -83,13 +72,12 @@ function AddMovie(props) {
 }
 
 AddMovie.propTypes = {
-  action: PropTypes.func.isRequired,
   toggleWindow: PropTypes.func.isRequired,
   id: PropTypes.number,
   title: PropTypes.string,
-  releaseDate: PropTypes.string,
-  movieUrl: PropTypes.string,
-  rating: PropTypes.number,
+  release_date: PropTypes.string,
+  poster_path: PropTypes.string,
+  vote_average: PropTypes.number,
   runtime: PropTypes.number,
   overview: PropTypes.string,
   genres: PropTypes.array

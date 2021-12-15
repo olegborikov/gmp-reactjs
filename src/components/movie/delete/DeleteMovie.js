@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 function DeleteMovie(props) {
   const onButtonClick = () => {
     props.toggleWindow()
-    props.deleteMovie(props.id)
   }
 
   return (
@@ -21,7 +20,6 @@ function DeleteMovie(props) {
 
 DeleteMovie.propTypes = {
   toggleWindow: PropTypes.func.isRequired,
-  deleteMovie: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired
 };
 

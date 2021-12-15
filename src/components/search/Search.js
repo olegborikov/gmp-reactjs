@@ -7,7 +7,8 @@ function Search() {
   return (
     <div className={classes.search}>
       <SearchInput/>
-      <Button name="SEARCH" size="large"/>
+      <Button name="SEARCH" size="large" action={() => {
+      }}/>
     </div>
   );
 }
