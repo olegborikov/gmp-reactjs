@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 function mapStateToProps(state) {
   return {
-    movie: state.filterReducer.selectedMovie
+    movie: state.selectedMovie
   }
 }
 

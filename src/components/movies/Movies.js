@@ -6,12 +6,12 @@ import {filterMovies} from "../../redux/actions";
 import {connect} from "react-redux";
 
 function mapStateToProps(state) {
-  const {movies} = state.filterReducer
+  const {movies} = state
   return {
     movies: movies?.data,
-    currentGenre: state.filterReducer.currentGenre,
-    currentParameter: state.filterReducer.currentParameter,
-    currentOrder: state.filterReducer.currentOrder,
+    currentGenre: state.currentGenre,
+    currentParameter: state.currentParameter,
+    currentOrder: state.currentOrder,
   }
 }
 

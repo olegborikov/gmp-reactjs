@@ -8,8 +8,8 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 function mapStateToProps(state) {
-  const {movies} = state.filterReducer
-  const {error} = state.filterReducer
+  const {movies} = state
+  const {error} = state
 
   return {
     totalAmount: movies?.totalAmount,

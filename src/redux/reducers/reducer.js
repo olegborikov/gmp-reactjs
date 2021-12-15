@@ -1,10 +1,13 @@
 import {
+  ADD_MOVIE,
+  DELETE_MOVIE,
   SET_ERROR,
   SET_GENRE,
   SET_MOVIES,
   SET_ORDER,
   SET_PARAMETER,
-  SET_SELECTED_MOVIE
+  SET_SELECTED_MOVIE,
+  UPDATE_MOVIE
 } from "../../constants/actionTypes"
 
 export default (state = [], action) => {
@@ -21,6 +24,13 @@ export default (state = [], action) => {
       return {...state, currentParameter: action.payload, error: null}
     case SET_ORDER:
       return {...state, currentOrder: action.payload, error: null}
+    // TODO stub reducer for next module
+    case ADD_MOVIE:
+      return state
+    case UPDATE_MOVIE:
+      return state
+    case DELETE_MOVIE:
+      return state
     default:
       return state
   }

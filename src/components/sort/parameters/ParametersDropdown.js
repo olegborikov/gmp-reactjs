@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 function mapStateToProps(state) {
   return {
-    currentParameter: state.filterReducer.currentParameter
+    currentParameter: state.currentParameter
   }
 }
 

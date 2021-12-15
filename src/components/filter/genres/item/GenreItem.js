@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 function mapStateToProps(state) {
   return {
-    currentGenre: state.filterReducer.currentGenre
+    currentGenre: state.currentGenre
   }
 }
 

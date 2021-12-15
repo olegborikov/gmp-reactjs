@@ -5,7 +5,7 @@ import {changeOrder} from "../../../redux/actions";
 
 function mapStateToProps(state) {
   return {
-    currentOrder: state.filterReducer.currentOrder
+    currentOrder: state.currentOrder
   }
 }
 
