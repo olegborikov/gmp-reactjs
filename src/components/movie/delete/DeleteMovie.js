@@ -1,19 +1,31 @@
 import React from "react";
+import {Form, Formik} from "formik";
 import classes from "./DeleteMovie.module.css";
 import DeleteText from "./text/DeleteText";
 import Button from "../../common/button/Button";
 import PropTypes from "prop-types";
+import {deleteMovie} from "../../../redux/actions";
+import {connect} from "react-redux";
+
+const mapDispatchToProps = dispatch => ({
+  deleteMovie: (id) => deleteMovie(dispatch, id)
+})
 
 function DeleteMovie(props) {
   const onButtonClick = () => {
+    props.deleteMovie(props.id)
     props.toggleWindow()
   }
 
   return (
     <div className={classes.popup}>
       <Button action={props.toggleWindow} name="X" color="grey"/>
-      <DeleteText/>
-      <Button name="CONFIRM" action={onButtonClick}/>
+      <Formik onSubmit={() => onButtonClick()} initialValues={""}>
+        <Form>
+          <DeleteText/>
+          <Button name="CONFIRM" submit={true}/>
+        </Form>
+      </Formik>
     </div>
   )
 }
@@ -23,4 +35,4 @@ DeleteMovie.propTypes = {
   id: PropTypes.number.isRequired
 };
 
-export default DeleteMovie;
+export default connect(null, mapDispatchToProps)(DeleteMovie)

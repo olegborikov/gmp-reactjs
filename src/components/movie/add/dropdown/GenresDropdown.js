@@ -3,9 +3,11 @@ import classes from "./GenresDropdown.module.css";
 import PropTypes from "prop-types";
 import {GENRES} from "../../../../constants";
 import {useToggleWindow} from "../../../../hooks/useToggleWindow";
+import {Field} from "formik";
 
 function GenresDropdown(props) {
   const [isVisible, toggleVisible] = useToggleWindow()
+  const genres = [...new Set([...GENRES, ...props.initGenres])];
 
   return (
     <div className={classes.dropdown}>
@@ -15,10 +17,10 @@ function GenresDropdown(props) {
       {isVisible ?
         <div className={classes.list}>
           {
-            GENRES.map(genre =>
-              <li className={classes.li} key={GENRES.indexOf(genre)}>
-                <input type="checkbox" checked={props.genres?.indexOf(genre) > -1} value={genre}
-                       onChange={props.onChange}/>
+            genres.map(genre =>
+              <li className={classes.li} key={genres.indexOf(genre)}>
+                <Field type="checkbox" checked={props.currentGenres?.indexOf(genre) > -1} value={genre}
+                       onChange={props.setGenres} name="genres"/>
                 <label>{genre}</label>
               </li>
             )
@@ -30,8 +32,8 @@ function GenresDropdown(props) {
 }
 
 GenresDropdown.propTypes = {
-  genres: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired,
+  currentGenres: PropTypes.array.isRequired,
+  setGenres: PropTypes.func.isRequired,
 };
 
 export default GenresDropdown;

@@ -16,12 +16,12 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  filterMovies: (genre, sortBy, sortOrder) => filterMovies(dispatch, genre, sortBy, sortOrder)
+  filterMovies: () => dispatch(filterMovies())
 })
 
 function Movies(props) {
   useEffect(() => {
-    props.filterMovies(props.currentGenre, props.currentParameter, props.currentOrder)
+    props.filterMovies()
   }, [props.currentGenre, props.currentParameter, props.currentOrder])
 
   return (
