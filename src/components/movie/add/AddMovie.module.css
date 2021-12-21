@@ -12,7 +12,23 @@
 
 .inputs {
   display: grid;
-  grid-template-areas:
-  "addinput addinput";
   grid-template-columns: 310px 170px;
+}
+
+.input {
+  background-color: #424242;
+  width: 95%;
+}
+
+.param {
+  color: #f65261;
+}
+
+.add {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.error {
+ color: red;
 }
