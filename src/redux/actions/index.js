@@ -1,65 +1,65 @@
 import {
+  ADD_MOVIE, DELETE_MOVIE,
   SET_ERROR,
   SET_GENRE,
   SET_MOVIES,
   SET_ORDER,
   SET_PARAMETER,
-  SET_SELECTED_MOVIE
+  SET_SELECTED_MOVIE, UPDATE_MOVIE
 } from "../../constants/actionTypes"
 import {deleteMovieById, getMovieById, getMovies, postMovie, putMovie} from "../../api-service";
 
 export const filterMovies = () => (dispatch, getState) => {
-  const genre = getState().currentGenre
-  const sortBy = getState().currentParameter
-  const sortOrder = getState().currentOrder
-  getMovies(genre === "All" ? "" : genre,
-    sortBy.toLowerCase().replaceAll(" ", "_"),
-    sortOrder.toLowerCase())
-    .then(movies => {
-      dispatch(setMovies(movies))
-    })
-    .catch(reason => {
-      dispatch(setError(reason));
-    })
+  const genre = getState().currentGenre === "All" ? "" : getState().currentGenre
+  const sortBy = getState().currentParameter.toLowerCase().replaceAll(" ", "_")
+  const sortOrder = getState().currentOrder.toLowerCase()
+  getMovies(genre, sortBy, sortOrder)
+    .then(movies => dispatch(setMovies(movies)))
+    .catch(reason => dispatch(setError(reason)))
 }
 
 export const findMovieById = (dispatch, id) => {
   getMovieById(id)
-    .then(movie => {
-      dispatch(setSelectedMovie(movie))
-    })
-    .catch(reason => {
-      dispatch(setError(reason));
-    })
+    .then(movie => dispatch(setSelectedMovie(movie)))
+    .catch(reason => dispatch(setError(reason)))
 }
 
 export const addMovie = (dispatch, movie) => {
   postMovie(movie)
-    .then(() => dispatch(filterMovies()))
-    .catch(reason => {
-      dispatch(setError(reason));
-    })
+    .then((data) => dispatch(addMovieAction(data)))
+    .catch(reason => dispatch(setError(reason)))
 }
 
 export const updateMovie = (dispatch, movie) => {
   putMovie(movie)
-    .then(() => dispatch(filterMovies()))
-    .catch(reason => {
-      dispatch(setError(reason));
-    })
+    .then((data) => dispatch(updateMovieAction(data)))
+    .catch(reason => dispatch(setError(reason)))
 }
 
 export const deleteMovie = (dispatch, id) => {
   deleteMovieById(id)
-    .then(() => dispatch(filterMovies()))
-    .catch(reason => {
-      dispatch(setError(reason));
-    })
+    .then(() => dispatch(deleteMovieAction(id)))
+    .catch(reason => dispatch(setError(reason)))
 }
 
 export const setError = (reason) => ({
   type: SET_ERROR,
   error: reason
+})
+
+export const addMovieAction = movie => ({
+  type: ADD_MOVIE,
+  payload: movie
+})
+
+export const updateMovieAction = movie => ({
+  type: UPDATE_MOVIE,
+  payload: movie
+})
+
+export const deleteMovieAction = id => ({
+  type: DELETE_MOVIE,
+  payload: id
 })
 
 export const setMovies = (movies) => ({
