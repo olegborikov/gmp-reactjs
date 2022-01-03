@@ -2,10 +2,11 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:4000/movies";
 const SEPARATOR = "/";
+const LIMIT_AND_SEARCH_BY = "?limit=100&searchBy=title";
 
-export const getMovies = (filter, sortBy, sortOrder) => {
-  return axios.get(BASE_URL, {
-    params: {filter, sortBy, sortOrder}
+export const getMovies = (filter, sortBy, sortOrder, search) => {
+  return axios.get(BASE_URL + LIMIT_AND_SEARCH_BY, {
+    params: {filter, sortBy, sortOrder, search}
   }).then(response => response.data)
 }
 

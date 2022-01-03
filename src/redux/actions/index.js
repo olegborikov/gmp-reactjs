@@ -1,26 +1,13 @@
-import {
-  ADD_MOVIE, DELETE_MOVIE,
-  SET_ERROR,
-  SET_GENRE,
-  SET_MOVIES,
-  SET_ORDER,
-  SET_PARAMETER,
-  SET_SELECTED_MOVIE, UPDATE_MOVIE
-} from "../../constants/actionTypes"
-import {deleteMovieById, getMovieById, getMovies, postMovie, putMovie} from "../../api-service";
+import {ADD_MOVIE, DELETE_MOVIE, SET_ERROR, SET_MOVIES, SET_ORDER, UPDATE_MOVIE} from "../../constants/actionTypes"
+import {deleteMovieById, getMovies, postMovie, putMovie} from "../../api-service";
+import {GENRES} from "../../constants";
 
-export const filterMovies = () => (dispatch, getState) => {
-  const genre = getState().currentGenre === "All" ? "" : getState().currentGenre
-  const sortBy = getState().currentParameter.toLowerCase().replaceAll(" ", "_")
+export const filterMovies = (sortBy, genre, search) => (dispatch, getState) => {
   const sortOrder = getState().currentOrder.toLowerCase()
-  getMovies(genre, sortBy, sortOrder)
+  getMovies(GENRES.includes(genre?.toLowerCase()) ? genre : "",
+    sortBy?.toLowerCase().replaceAll(" ", "_")
+    , sortOrder, search)
     .then(movies => dispatch(setMovies(movies)))
-    .catch(reason => dispatch(setError(reason)))
-}
-
-export const findMovieById = (dispatch, id) => {
-  getMovieById(id)
-    .then(movie => dispatch(setSelectedMovie(movie)))
     .catch(reason => dispatch(setError(reason)))
 }
 
@@ -65,21 +52,6 @@ export const deleteMovieAction = id => ({
 export const setMovies = (movies) => ({
   type: SET_MOVIES,
   payload: movies
-})
-
-export const setSelectedMovie = (movie) => ({
-  type: SET_SELECTED_MOVIE,
-  payload: movie
-})
-
-export const changeGenre = genre => ({
-  type: SET_GENRE,
-  payload: genre
-})
-
-export const changeParameter = parameter => ({
-  type: SET_PARAMETER,
-  payload: parameter
 })
 
 export const changeOrder = order => ({
