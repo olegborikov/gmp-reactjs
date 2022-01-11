@@ -1,19 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import SearchHeader from "./search/SearchHeader";
 import MovieInfoHeader from "./info/MovieInfoHeader";
+import {useSearchParams} from "react-router-dom";
 
-function Header(props) {
+function Header() {
+  const [searchParams] = useSearchParams();
+
   return (
-    props.isDescriptionVisible ?
-      <MovieInfoHeader selectSearch={props.selectSearch}/>
-      : <SearchHeader/>
+    searchParams.get("movie") ? <MovieInfoHeader/> : <SearchHeader/>
   )
 }
-
-Header.propTypes = {
-  isDescriptionVisible: PropTypes.bool.isRequired,
-  selectSearch: PropTypes.func.isRequired
-};
 
 export default Header

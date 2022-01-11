@@ -8,7 +8,8 @@ module.exports = {
   entry: ['./src/index.js'],
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'build/dev')
+    path: path.resolve(__dirname, 'build/dev'),
+    publicPath: "/"
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
@@ -17,7 +18,8 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     static: './build/dev',
-    port: 3000
+    port: 3000,
+    historyApiFallback: true
   },
   plugins: [
     new CleanWebpackPlugin(),

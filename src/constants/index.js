@@ -6,9 +6,9 @@ export const SORT_TYPES = [
 ]
 
 export const GENRES = [
-  "Action",
-  "Crime",
-  "Documentary",
-  "Horror",
-  "Comedy"
+  "action",
+  "crime",
+  "documentary",
+  "horror",
+  "comedy"
 ]

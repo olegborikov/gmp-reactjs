@@ -12,9 +12,7 @@ const initial = {
     totalAmount: 0
   },
   error: null,
-  currentGenre: "All",
-  currentParameter: "TITLE",
-  currentOrder: "ASC"
+  currentOrder: "DESC"
 };
 
 const store = createStore(

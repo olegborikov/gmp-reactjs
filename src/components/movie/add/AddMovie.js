@@ -10,11 +10,6 @@ import InputField from "./field/InputField";
 import GenresDropdown from "./dropdown/GenresDropdown";
 import GenresField from "./genres/GenresField";
 
-const mapDispatchToProps = dispatch => ({
-  addMovie: (movie) => addMovie(dispatch, movie),
-  updateMovie: (movie) => updateMovie(dispatch, movie)
-})
-
 function validate(value, condition) {
   let error;
   if (!value) {
@@ -114,5 +109,10 @@ AddMovie.propTypes = {
   overview: PropTypes.string,
   genres: PropTypes.array
 };
+
+const mapDispatchToProps = dispatch => ({
+  addMovie: (movie) => addMovie(dispatch, movie),
+  updateMovie: (movie) => updateMovie(dispatch, movie)
+})
 
 export default connect(null, mapDispatchToProps)(AddMovie)

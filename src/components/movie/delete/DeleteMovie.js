@@ -7,10 +7,6 @@ import PropTypes from "prop-types";
 import {deleteMovie} from "../../../redux/actions";
 import {connect} from "react-redux";
 
-const mapDispatchToProps = dispatch => ({
-  deleteMovie: (id) => deleteMovie(dispatch, id)
-})
-
 function DeleteMovie(props) {
   const onButtonClick = () => {
     props.deleteMovie(props.id)
@@ -34,5 +30,9 @@ DeleteMovie.propTypes = {
   toggleWindow: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired
 };
+
+const mapDispatchToProps = dispatch => ({
+  deleteMovie: (id) => deleteMovie(dispatch, id)
+})
 
 export default connect(null, mapDispatchToProps)(DeleteMovie)

@@ -9,6 +9,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'build/prod'),
+    publicPath: "/"
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
@@ -17,7 +18,8 @@ module.exports = {
   devtool: false,
   devServer: {
     static: './build/prod',
-    port: 3000
+    port: 3000,
+    historyApiFallback: true
   },
   plugins: [
     new CleanWebpackPlugin(),

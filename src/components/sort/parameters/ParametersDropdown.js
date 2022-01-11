@@ -1,30 +1,35 @@
-import React from "react";
+import React, {useEffect} from "react";
 import classes from "./ParametersDropdown.module.css";
 import {SORT_TYPES} from "../../../constants";
-import {changeParameter} from "../../../redux/actions";
-import {connect} from "react-redux";
+import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {navigateToSearch} from "../../../common";
 
-function mapStateToProps(state) {
-  return {
-    currentParameter: state.currentParameter
+function ParametersDropdown() {
+  const navigate = useNavigate();
+  let [searchParams] = useSearchParams();
+  const {searchQuery} = useParams();
+  const parameter = searchParams.get("sortBy")?.toUpperCase().replaceAll("_", " ")
+
+  const changeParameter = (newParameter) => {
+    searchParams.set("sortBy", newParameter.toLowerCase().replaceAll(" ", "_"));
+    navigateToSearch(navigate, searchQuery, searchParams)
   }
-}
 
-const mapDispatchToProps = dispatch => ({
-  changeParameter: (parameter) => dispatch(changeParameter(parameter))
-})
+  useEffect(() => {
+    if (!SORT_TYPES.includes(parameter)) {
+      changeParameter("VOTE AVERAGE")
+    }
+  })
 
-function ParametersDropdown(props) {
   return (
     <div className={classes.dropdown}>
-      <select className={classes.select} onChange={(e) => props.changeParameter(e.target?.value)}>
+      <select className={classes.select} onChange={(e) => changeParameter(e.target?.value)}>
         {
-          SORT_TYPES.map(value => <option key={SORT_TYPES.indexOf(value)}
-                                          selected={props.currentParameter === value}>{value}</option>)
+          SORT_TYPES.map(p => <option key={SORT_TYPES.indexOf(p)} selected={parameter === p}>{p}</option>)
         }
       </select>
     </div>
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ParametersDropdown)
+export default ParametersDropdown
