@@ -6,16 +6,6 @@ import MoviesLabel from "../movies/label/MoviesLabel";
 import SortOptions from "../sort/SortOptions";
 import {connect} from "react-redux";
 
-function mapStateToProps(state) {
-  const {movies} = state
-  const {error} = state
-
-  return {
-    totalAmount: movies?.totalAmount,
-    error: error?.toString()
-  }
-}
-
 function Home(props) {
   return (
     <div className={classes.home}>
@@ -34,6 +24,16 @@ function Home(props) {
       }
     </div>
   );
+}
+
+function mapStateToProps(state) {
+  const {movies} = state
+  const {error} = state
+
+  return {
+    totalAmount: movies?.totalAmount,
+    error: error?.toString()
+  }
 }
 
 export default connect(mapStateToProps)(Home)

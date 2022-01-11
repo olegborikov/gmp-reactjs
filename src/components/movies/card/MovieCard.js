@@ -17,7 +17,7 @@ function MovieCard(props) {
       </div>
       <div className={classes.blank}/>
       <div className={classes.text}>
-        <div className={classes.title} onClick={(e) => props.showDescription(props.movie.id)}>
+        <div className={classes.title} onClick={props.showDescription}>
           {title}
         </div>
         <div className={classes.year}>

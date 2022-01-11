@@ -4,8 +4,7 @@ import classes from "./GenreItem.module.css";
 
 function GenreItem(props) {
   return (
-    <button className={`${classes.item} ${(props.name === props.current ? classes.active : "")}`}
-            onClick={(e) => props.changeGenre(e.target?.value)} value={props.name}>
+    <button className={`${classes.item} ${(props.isActive ? classes.active : "")}`} onClick={props.changeGenre}>
       {props.name}
     </button>
   )
@@ -13,7 +12,7 @@ function GenreItem(props) {
 
 GenreItem.propTypes = {
   name: PropTypes.string.isRequired,
-  current: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
   changeGenre: PropTypes.func.isRequired,
 };
 

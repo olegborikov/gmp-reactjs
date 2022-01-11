@@ -3,6 +3,7 @@ import SearchInput from "./input/SearchInput";
 import Button from "../common/button/Button";
 import classes from "./Search.module.css";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {navigateToSearch} from "../../common";
 
 function Search() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Search() {
   return (
     <div className={classes.search}>
       <SearchInput search={search} setSearch={setSearch}/>
-      <Button name="SEARCH" size="large" action={(e) => navigate(`/search/${search}?${searchParams.toString()}`)}/>
+      <Button name="SEARCH" size="large" action={() => navigateToSearch(navigate, search, searchParams)}/>
     </div>
   );
 }

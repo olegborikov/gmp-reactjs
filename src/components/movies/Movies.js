@@ -4,6 +4,31 @@ import classes from "./Movies.module.css";
 import {filterMovies} from "../../redux/actions";
 import {connect} from "react-redux";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {navigateToSearch} from "../../common";
+
+function Movies(props) {
+  const navigate = useNavigate();
+  const {searchQuery} = useParams();
+  let [searchParams] = useSearchParams();
+
+  const showDescription = (id) => {
+    searchParams.set("movie", id)
+    navigateToSearch(navigate, searchQuery, searchParams)
+  }
+
+  useEffect(() => {
+    props.filterMovies(searchParams.get("sortBy"), searchParams.get("genre"), searchQuery)
+  }, [searchParams.get("sortBy"), searchParams.get("genre"), searchQuery, props.currentOrder])
+
+  return (
+    <div className={classes.movies}>
+      {
+        props.movies.map(value => <MovieCard key={value.id} movie={value}
+                                             showDescription={() => showDescription(value.id)}/>)
+      }
+    </div>
+  )
+}
 
 function mapStateToProps(state) {
   const {movies} = state
@@ -16,29 +41,5 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => ({
   filterMovies: (sortBy, genre, search) => dispatch(filterMovies(sortBy, genre, search))
 })
-
-function Movies(props) {
-  const navigate = useNavigate();
-  const {searchQuery} = useParams();
-  let [searchParams] = useSearchParams();
-
-  const showDescription = (id) => {
-    searchParams.set("movie", id);
-    navigate(`/search${searchQuery ? "/" + searchQuery : ""}?${searchParams.toString()}`)
-  }
-
-  useEffect(() => {
-    props.filterMovies(searchParams.get("sortBy"), searchParams.get("genre"), searchQuery)
-  }, [searchParams.get("sortBy"), searchParams.get("genre"), searchQuery, props.currentOrder])
-
-  return (
-    <div className={classes.movies}>
-      {
-        props.movies.map(value => <MovieCard key={props.movies.indexOf(value)} movie={value}
-                                             showDescription={showDescription}/>)
-      }
-    </div>
-  )
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies)

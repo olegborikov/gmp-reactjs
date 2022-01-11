@@ -3,6 +3,7 @@ import React, {useEffect} from "react";
 import GenreItem from "./item/GenreItem";
 import classes from "./GenresList.module.css";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {navigateToSearch} from "../../../common";
 
 function GenresList() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function GenresList() {
 
   const changeGenre = (newGenre) => {
     searchParams.set("genre", newGenre);
-    navigate(`/search${searchQuery ? "/" + searchQuery : ""}?${searchParams.toString()}`)
+    navigateToSearch(navigate, searchQuery, searchParams)
   }
 
   useEffect(() => {
@@ -23,9 +24,9 @@ function GenresList() {
 
   return (
     <div className={classes.list}>
-      <GenreItem name="all" current={genre} changeGenre={changeGenre}/>
+      <GenreItem name="all" isActive={genre === "all"} changeGenre={() => changeGenre("all")}/>
       {
-        GENRES.map(g => <GenreItem key={GENRES.indexOf(g)} name={g} current={genre} changeGenre={changeGenre}/>)
+        GENRES.map(g => <GenreItem key={g} name={g} isActive={genre === g} changeGenre={() => changeGenre(g)}/>)
       }
     </div>
   )

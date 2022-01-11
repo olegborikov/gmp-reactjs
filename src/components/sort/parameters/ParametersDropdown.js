@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import classes from "./ParametersDropdown.module.css";
 import {SORT_TYPES} from "../../../constants";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {navigateToSearch} from "../../../common";
 
 function ParametersDropdown() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ function ParametersDropdown() {
 
   const changeParameter = (newParameter) => {
     searchParams.set("sortBy", newParameter.toLowerCase().replaceAll(" ", "_"));
-    navigate(`/search${searchQuery ? "/" + searchQuery : ""}?${searchParams.toString()}`)
+    navigateToSearch(navigate, searchQuery, searchParams)
   }
 
   useEffect(() => {

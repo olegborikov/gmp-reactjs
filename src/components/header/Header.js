@@ -7,9 +7,7 @@ function Header() {
   const [searchParams] = useSearchParams();
 
   return (
-    searchParams.get("movie") ?
-      <MovieInfoHeader/>
-      : <SearchHeader/>
+    searchParams.get("movie") ? <MovieInfoHeader/> : <SearchHeader/>
   )
 }
 

@@ -3,8 +3,9 @@ import classes from "./MovieInfoHeader.module.css";
 import Logo from "../../logo/Logo";
 import {getMovieById} from "../../../api-service";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {navigateToSearch} from "../../../common";
 
-function MovieInfoHeader(props) {
+function MovieInfoHeader() {
   const navigate = useNavigate();
   const [movie, setMovie] = useState()
   let [searchParams] = useSearchParams();
@@ -12,7 +13,7 @@ function MovieInfoHeader(props) {
 
   const hideDescription = () => {
     searchParams.delete("movie");
-    navigate(`/search${searchQuery ? "/" + searchQuery : ""}?${searchParams.toString()}`)
+    navigateToSearch(navigate, searchQuery, searchParams)
   }
 
   useEffect(() => {
