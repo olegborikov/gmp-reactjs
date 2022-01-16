@@ -20,7 +20,7 @@ function MovieInfoHeader() {
     getMovieById(searchParams.get("movie"))
       .then(movie => setMovie(movie))
       .catch(reason => hideDescription())
-  })
+  },[])
 
   return (
     <div className={classes.header}>

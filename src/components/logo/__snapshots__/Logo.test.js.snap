@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `
+<DocumentFragment>
+  <div
+    class="logo"
+  >
+    <strong>
+      netflix
+    </strong>
+    roulette
+  </div>
+</DocumentFragment>
+`;
