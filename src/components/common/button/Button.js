@@ -3,7 +3,6 @@ import classes from "./Button.module.css";
 import PropTypes from "prop-types";
 
 function Button(props) {
-
   return (
     <div className={classes.confirm}>
       <button className={`${(props.size === "large" ? classes.large : classes.small)} 
@@ -11,7 +10,7 @@ function Button(props) {
         props.color === "grey" ? classes.grey :
           props.color === "grey-red" ? classes.greyred : classes.red)}`}
               type={props.submit ? "submit" : props.reset ? "reset" : ""}
-              onClick={(e) => props.action ? props.action() : null}>{props.name}</button>
+              onClick={() => props.action ? props.action() : null}>{props.name}</button>
     </div>
   )
 }
