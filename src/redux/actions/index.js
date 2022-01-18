@@ -1,6 +1,25 @@
 import {ADD_MOVIE, DELETE_MOVIE, SET_ERROR, SET_MOVIES, SET_ORDER, UPDATE_MOVIE} from "../../constants/actionTypes"
-import {deleteMovieById, getMovies, postMovie, putMovie} from "../../api-service";
+import {DEFAULT_FILTER, deleteMovieById, getMovies, postMovie, putMovie} from "../../api-service";
 import {GENRES} from "../../constants";
+import {all, call, put} from "redux-saga/effects";
+
+export function* rootSaga() {
+  yield all([
+    moviesSaga(),
+  ]);
+}
+
+function* moviesSaga() {
+  yield all([
+    fetchMovies()
+  ]);
+}
+
+function* fetchMovies() {
+  const response = yield call(fetch, DEFAULT_FILTER);
+  const movies = yield response.json();
+  yield put(setMovies(movies));
+}
 
 export const filterMovies = (sortBy, genre, search) => (dispatch, getState) => {
   const sortOrder = getState().currentOrder.toLowerCase()

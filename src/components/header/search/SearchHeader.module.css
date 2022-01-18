@@ -1,7 +1,7 @@
 .header {
   grid-area: header;
   margin-bottom: 15px;
-  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1)), url("/public/header-img.jpeg");
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1)), url("/img/header-img.jpeg");
 }
 
 .top {

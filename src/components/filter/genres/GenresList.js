@@ -2,18 +2,19 @@ import {GENRES} from "../../../constants";
 import React, {useEffect} from "react";
 import GenreItem from "./item/GenreItem";
 import classes from "./GenresList.module.css";
-import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {useHistory, useLocation, useParams} from "react-router-dom";
 import {navigateToSearch} from "../../../common";
 
 function GenresList() {
-  const navigate = useNavigate();
-  let [searchParams] = useSearchParams();
+  const history = useHistory();
+  const {search} = useLocation();
+  let searchParams = new URLSearchParams(search);
   const {searchQuery} = useParams();
   const genre = searchParams.get("genre")?.toLowerCase()
 
   const changeGenre = (newGenre) => {
     searchParams.set("genre", newGenre);
-    navigateToSearch(navigate, searchQuery, searchParams)
+    navigateToSearch(history, searchQuery, searchParams)
   }
 
   useEffect(() => {

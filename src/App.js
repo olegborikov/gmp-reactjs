@@ -1,31 +1,38 @@
-import "antd/dist/antd.css";
+import 'isomorphic-fetch';
+import 'babel-polyfill';
 import React from "react";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import "./App.css";
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import Footer from "./components/footer/Footer";
-import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import NotFound from "./components/error/notfound/NotFound";
+import {hot} from "react-hot-loader";
+import {Provider} from "react-redux";
 
-function App() {
+function App({store}) {
   return (
     <ErrorBoundary>
-      <Router>
+      <Provider store={store}>
         <div className="app">
-          <Routes>
-            {["/search", "/search/:searchQuery"].map(path => <Route path={path} element={<>
+          <Switch>
+            {["/search", "/search/:searchQuery"].map(path => <Route path={path}>
               <Header/>
               <Home/>
               <Footer/>
-            </>}/>)}
-            <Route path="/" element={<Navigate to="search"/>}/>
-            <Route path="*" element={<NotFound/>}/>
-          </Routes>
+            </Route>)}
+            <Route path="/">
+              <Redirect to="search"/>
+            </Route>
+            <Route path="*">
+              <NotFound/>
+            </Route>
+          </Switch>
         </div>
-      </Router>
+      </Provider>
     </ErrorBoundary>
   )
 }
 
-export default App
+export default hot(module)(App);
