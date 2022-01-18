@@ -2,18 +2,19 @@ import React, {useEffect, useState} from "react";
 import classes from "./MovieInfoHeader.module.css";
 import Logo from "../../logo/Logo";
 import {getMovieById} from "../../../api-service";
-import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {useHistory, useLocation, useParams} from "react-router-dom";
 import {navigateToSearch} from "../../../common";
 
 function MovieInfoHeader() {
-  const navigate = useNavigate();
+  const history = useHistory();
   const [movie, setMovie] = useState()
-  let [searchParams] = useSearchParams();
+  const {search} = useLocation();
+  let searchParams = new URLSearchParams(search);
   const {searchQuery} = useParams();
 
   const hideDescription = () => {
     searchParams.delete("movie");
-    navigateToSearch(navigate, searchQuery, searchParams)
+    navigateToSearch(history, searchQuery, searchParams)
   }
 
   useEffect(() => {

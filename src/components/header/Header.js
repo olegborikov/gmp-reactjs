@@ -1,14 +1,15 @@
 import React from "react";
 import SearchHeader from "./search/SearchHeader";
 import MovieInfoHeader from "./info/MovieInfoHeader";
-import {useSearchParams} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 function Header() {
-  const [searchParams] = useSearchParams();
+  const {search} = useLocation();
+  const params = new URLSearchParams(search);
 
   return (
-    searchParams.get("movie") ? <MovieInfoHeader/> : <SearchHeader/>
+    params.get("movie") ? <MovieInfoHeader/> : <SearchHeader/>
   )
 }
 
-export default Header
+export default Header;

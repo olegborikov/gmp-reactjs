@@ -3,17 +3,18 @@ import React, {useEffect} from "react";
 import classes from "./Movies.module.css";
 import {filterMovies} from "../../redux/actions";
 import {connect} from "react-redux";
-import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {useHistory, useLocation, useParams} from "react-router-dom";
 import {navigateToSearch} from "../../common";
 
 function Movies(props) {
-  const navigate = useNavigate();
+  const history = useHistory();
   const {searchQuery} = useParams();
-  let [searchParams] = useSearchParams();
+  const {search} = useLocation();
+  let searchParams = new URLSearchParams(search);
 
   const showDescription = (id) => {
     searchParams.set("movie", id)
-    navigateToSearch(navigate, searchQuery, searchParams)
+    navigateToSearch(history, searchQuery, searchParams)
   }
 
   useEffect(() => {

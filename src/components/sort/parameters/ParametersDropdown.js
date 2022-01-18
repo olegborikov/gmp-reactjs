@@ -1,18 +1,19 @@
 import React, {useEffect} from "react";
 import classes from "./ParametersDropdown.module.css";
 import {SORT_TYPES} from "../../../constants";
-import {useNavigate, useParams, useSearchParams} from "react-router-dom";
+import {useHistory, useLocation, useParams} from "react-router-dom";
 import {navigateToSearch} from "../../../common";
 
 function ParametersDropdown() {
-  const navigate = useNavigate();
-  let [searchParams] = useSearchParams();
+  const history = useHistory();
+  const {search} = useLocation();
+  let searchParams = new URLSearchParams(search);
   const {searchQuery} = useParams();
   const parameter = searchParams.get("sortBy")?.toUpperCase().replaceAll("_", " ")
 
   const changeParameter = (newParameter) => {
     searchParams.set("sortBy", newParameter.toLowerCase().replaceAll(" ", "_"));
-    navigateToSearch(navigate, searchQuery, searchParams)
+    navigateToSearch(history, searchQuery, searchParams)
   }
 
   useEffect(() => {
